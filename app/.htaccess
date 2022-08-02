@@ -1,0 +1,3 @@
+Options -Indexes
+# Header Set Access-Control-Allow-Origin "http://www.agrovirtual.org"
+# para solucionar problemas cors site origin
