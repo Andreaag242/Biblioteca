@@ -9,7 +9,7 @@ Constantes
 define('APPROOT', dirname(dirname(__FILE__)));
 //echo APPROOT;
 //URL DE LA APP
-define('URLROOT','http://localhost:8000/Curso_php/biblioteca/');
+define('URLROOT','http://localhost:8000/biblioteca/');
 //NOMBRE DE LA APLICACIÖN
 define('SITENAME', 'Aplicacion Hospital Version MVC');
 //CREDENCIALES PARA LA BASE DE DATOS 

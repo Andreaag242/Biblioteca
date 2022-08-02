@@ -2,7 +2,7 @@
 Options -Multiviews
 RewriteEngine On 
 #tener en cuenta la ruta 
-RewriteBase /Curso_php/biblioteca/public
+RewriteBase /biblioteca/public
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

@@ -51,9 +51,9 @@
                       <p class="text-xs text-secondary mb-0"><?php echo $usuario->nombreRol; ?></p>
                     </td>
                     <td class="align-middle">
-                      <a class="btn btn-primary btn-sm" href="<?php echo URLROOT; ?>Usuario/editarUsuario<?php echo $usuario->idUsuario;  ?>"><i class="bi bi-pencil-square">Editar</i></a>
+                      <a class="btn btn-primary btn-sm" href="<?php echo URLROOT; ?>Usuario/editarUsuario/<?php echo $usuario->idUsuario;  ?>"><i class="bi bi-pencil-square">Editar</i></a>
                     </td>
-                    <td><a class="btn btn-danger btn-sm" href="http://"><i class="bi bi-trash3">Borrar</i></a>
+                    <td><a class="btn btn-danger btn-sm" href="<?php echo URLROOT; ?>Usuario/eliminarUsuario/<?php echo $usuario->idUsuario;  ?>"><i class="bi bi-trash3">Borrar</i></a>
                     </td>
                   </tr>
                 <?php endforeach; ?>

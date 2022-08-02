@@ -67,7 +67,7 @@ class UsuarioModel{
 
     public function editUsuario($data){
 
-        $valor=$this->db->query("UPDATE `usuario` SET idUsuario=:id , nombre1=:nom1 ,nombre2=:nom2,apellido1=:ape1, apellido2=:ape2, fechaNacimiento=:fechaN,  telefono=:tel, direccion=:dir, usuario=:user, passwordUsuario=:pass, rol_idRol=:rol");
+        $valor=$this->db->query("UPDATE `usuario` SET idUsuario=:id , nombre1=:nom1 ,nombre2=:nom2,apellido1=:ape1, apellido2=:ape2, fechaNacimiento=:fechaN,  telefono=:tel, direccion=:dir, usuario=:user, passwordUsuario=:pass, rol_idRol=:rol Where idUsuario=:id");
         //bindiamos
         $valor->bindParam(':id', $data['idUsuario'],PDO::PARAM_INT);
         $valor->bindParam(':nom1', $data['nombre1Usuario'],PDO::PARAM_STR);
@@ -100,5 +100,20 @@ class UsuarioModel{
         $this->db->query("SELECT * from rol");
         $resultSet = $this->db->getAll();
         return $resultSet;
+    }
+
+
+    public function eliminarUsuario($data){
+
+        $valor=$this->db->query("UPDATE `usuario` SET  rol_idRol=3 Where idUsuario=:id");
+        //bindiamos
+        $valor->bindParam(':id', $data['idUsuario'],PDO::PARAM_INT);
+        /* $valor->bindParam(':rol', $data['rolUsuario'],PDO::PARAM_INT); */
+        //verificamos la ejecucion correcta del query*/
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

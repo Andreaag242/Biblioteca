@@ -76,6 +76,7 @@ class Usuario extends Controller
             };
         } else {
             $usuario = $this->usuarioModel->getOne($id);
+            $roles = $this->usuarioModel->roles();
             $data = [
                 'idUsuario' => $id,
                 'nombre1Usuario' => $usuario->nombre1,
@@ -89,8 +90,31 @@ class Usuario extends Controller
                 'passUsuario' => $usuario->passwordUsuario,
                 'rolUsuario' => $usuario->rol_idRol
             ];
-            $this->renderView('Usuario/UsuarioEditar', $data);
+            $rol=[
+                'idRol' => $roles->idRol,
+                'nombreRol'=>$roles->nombreRol
+            ];
+            
+            $this->renderView('Usuario/UsuarioEditar', $data, $rol);
         }
     }
        
+
+    public function eliminarUsuario($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $data = [
+                'idUsuario' => $id
+            ];
+            var_dump($data);
+            if ($this->usuarioModel->eliminarUsuario($data)) {
+                $this->index();
+            } else {
+                die('ocurrió un error en la inserción !');
+            };
+        } else {
+
+            $this->index();
+        }
+    }
 }
