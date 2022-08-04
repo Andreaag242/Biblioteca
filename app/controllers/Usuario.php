@@ -70,7 +70,7 @@ class Usuario extends Controller
 
             if ($this->usuarioModel->editUsuario($data)) {
                 $data = [];
-                $this->renderView('Usuario/UsuarioEditar', $data);
+                $this->index();
             } else {
                 die('ocurrió un error en la inserción !');
             };
@@ -88,33 +88,28 @@ class Usuario extends Controller
                 'direccionUsuario' => $usuario->direccion,
                 'usuario' => $usuario->usuario,
                 'passUsuario' => $usuario->passwordUsuario,
-                'rolUsuario' => $usuario->rol_idRol
+                'rolUsuario' => $usuario->rol_idRol,
+                'roles' => $roles
             ];
-            $rol=[
+            /* $rol=[
                 'idRol' => $roles->idRol,
                 'nombreRol'=>$roles->nombreRol
-            ];
+            ]; */
             
-            $this->renderView('Usuario/UsuarioEditar', $data, $rol);
+            $this->renderView('Usuario/UsuarioEditar', $data);
         }
     }
        
 
     public function eliminarUsuario($id)
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $data = [
-                'idUsuario' => $id
-            ];
-            var_dump($data);
-            if ($this->usuarioModel->eliminarUsuario($data)) {
-                $this->index();
-            } else {
-                die('ocurrió un error en la inserción !');
-            };
-        } else {
-
+        $data = [
+            'idUsuario' => $id
+        ];
+        if ($this->usuarioModel->elimUsuario($data)) {
             $this->index();
-        }
+        } else {
+            $this->index();
+        };
     }
 }

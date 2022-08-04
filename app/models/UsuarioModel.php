@@ -103,12 +103,12 @@ class UsuarioModel{
     }
 
 
-    public function eliminarUsuario($data){
+    public function elimUsuario($data){
 
         $valor=$this->db->query("UPDATE `usuario` SET  rol_idRol=3 Where idUsuario=:id");
         //bindiamos
         $valor->bindParam(':id', $data['idUsuario'],PDO::PARAM_INT);
-        /* $valor->bindParam(':rol', $data['rolUsuario'],PDO::PARAM_INT); */
+        /*$valor->bindParam(':rol', $data['rolUsuario'] ,PDO::PARAM_INT);*/
         //verificamos la ejecucion correcta del query*/
         if ($this->db->execute()) {
             return true;

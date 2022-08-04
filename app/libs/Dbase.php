@@ -2,7 +2,7 @@
 
 /* 
 
-clase base oara manipular el gestor de base de datos orm basico
+clase base para manipular el gestor de base de datos orm basico
 */
 class Dbase
 {

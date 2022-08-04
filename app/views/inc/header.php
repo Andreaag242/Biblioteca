@@ -36,6 +36,7 @@ session_start();
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="<?php echo URLROOT; ?>css/nucleo-svg.css" rel="stylesheet" />
+  <link href="<?php echo URLROOT; ?>css/style.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="<?php echo URLROOT; ?>css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
@@ -53,19 +54,19 @@ session_start();
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="../pages/dashboard.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link " href="<?php echo URLROOT; ?>Usuario">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Usuarios</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="<?php echo URLROOT; ?>Cliente">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Clientes</span>
           </a>
         </li>
         <li class="nav-item">
