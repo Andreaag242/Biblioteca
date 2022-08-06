@@ -15,7 +15,7 @@ class Cliente extends Controller
     }
     public function formAdd(){
         $data = $this->usuarioModel->roles();
-        $this->renderView('Usuario/UsuarioForm', $data);
+        $this->renderView('Cliente/ClienteForm', $data);
     }
 
     public function agregarUsuario(){

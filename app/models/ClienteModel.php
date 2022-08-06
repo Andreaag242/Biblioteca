@@ -1,6 +1,6 @@
 <?php
 //modelo correspondiente a cada controlador
-class UsuarioModel
+class ClienteModel
 {
     private $db;
 
@@ -8,14 +8,14 @@ class UsuarioModel
     {
         $this->db = new Dbase;
     }
-    public function verUsuarios()
+    public function verClientes()
     {
         $this->db->query("SELECT idCliente, nombre1, nombre2, apellido1, apellido2, fechaNacimiento, telefono, direccion, activo
         from cliente");
         $resultSet = $this->db->getAll();
         return $resultSet;
     }
-    public function addUsuario($data)
+    public function addCliente($data)
     {
 
         $valor = $this->db->query("INSERT INTO `usuario` (idUsuario , nombre1 ,nombre2,apellido1, apellido2, fechaNacimiento,  telefono, direccion, usuario, passwordUsuario, rol_idRol) 
@@ -40,7 +40,7 @@ class UsuarioModel
         }
     }
 
-    public function editUsuario($data)
+    public function editCliente($data)
     {
 
         $valor = $this->db->query("UPDATE `usuario` SET idUsuario=:id , nombre1=:nom1 ,nombre2=:nom2,apellido1=:ape1, apellido2=:ape2, fechaNacimiento=:fechaN,  telefono=:tel, direccion=:dir, usuario=:user, passwordUsuario=:pass, rol_idRol=:rol Where idUsuario=:id");
@@ -80,7 +80,7 @@ class UsuarioModel
     }
 
 
-    public function elimUsuario($data)
+    public function elimCliente($data)
     {
 
         $valor = $this->db->query("UPDATE `usuario` SET  rol_idRol=3 Where idUsuario=:id");
