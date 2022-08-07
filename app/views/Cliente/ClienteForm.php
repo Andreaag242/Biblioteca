@@ -10,41 +10,32 @@
 
             <div class="card z-index-0">
                 <div class="card-header text-center pt-4">
-                    <h5>Usuario</h5>
+                    <h5>Cliente</h5>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="col p-3 ps-5">
-                            <form role="form" method="POST" action="<?php echo URLROOT; ?>Usuario/agregarUsuario">
-                                <input type="text" name="idUsuario" class="form-control w-50" placeholder="Identificación">
+                            <form role="form" method="POST" action="<?php echo URLROOT; ?>Cliente/agregarCliente">
+                                <input type="text" name="idCliente" class="form-control w-50" placeholder="Identificación">
                                 <br>
-                                <input type="text" name="nombre1Usuario" class="form-control w-75" placeholder="Primer Nombre">
+                                <input type="text" name="nombre1Cliente" class="form-control w-75" placeholder="Primer Nombre">
                                 <br>
-                                <input type="text" name="nombre2Usuario" class="form-control w-75" placeholder="Segundo Nombre">
+                                <input type="text" name="nombre2Cliente" class="form-control w-75" placeholder="Segundo Nombre">
                                 <br>
-                                <input type="text" name="apellido1Usuario" class="form-control w-75" placeholder="Primer Apellido">
+                                <input type="text" name="apellido1Cliente" class="form-control w-75" placeholder="Primer Apellido">
                                 <br>
-                                <input type="text" name="apellido2Usuario" class="form-control w-75" placeholder="Segundo Apellido">
+                                <input type="text" name="apellido2Cliente" class="form-control w-75" placeholder="Segundo Apellido">
                                 <br>
                                 <h6>Fecha de Nacimiento</h6>
-                                <input type="date" name="fechaNaceUsuario" class="form-control w-75">
+                                <input type="date" name="fechaNaceCliente" class="form-control w-75">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="col p-3">
-                            <input type="text" name="telefonoUsuario" class="form-control" placeholder="Télefono">
+                            <input type="text" name="telefonoCliente" class="form-control" placeholder="Télefono">
                             <br>
-                            <input type="text" name="direccionUsuario" class="form-control" placeholder="Dirección">
-                            <br>
-                            <input type="text" name="usuario" class="form-control" placeholder="Usuario">
-                            <br>
-                            <input type="password" name="passUsuario" class="form-control" placeholder="Contraseña">
-                            <br>
-                            <select class="form-select" name="rolUsuario">
-                                <?php foreach ($data as $rol) :; ?>
-                                    <option value="<?php echo $rol->idRol; ?>"><?php echo $rol->nombreRol; ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                            <input type="text" name="direccionCliente" class="form-control" placeholder="Dirección">
+                            
                         </div>
 
                     </div>

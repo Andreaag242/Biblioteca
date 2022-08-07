@@ -14,26 +14,23 @@ class Cliente extends Controller
 
     }
     public function formAdd(){
-        $data = $this->usuarioModel->roles();
+        $data = [];
         $this->renderView('Cliente/ClienteForm', $data);
     }
 
-    public function agregarUsuario(){
+    public function agregarCliente(){
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $data = [
-                'idUsuario' => $_POST['idUsuario'],
-                'nombre1Usuario' => $_POST['nombre1Usuario'],
-                'nombre2Usuario' => $_POST['nombre2Usuario'],
-                'apellido1Usuario' => $_POST['apellido1Usuario'],
-                'apellido2Usuario' => $_POST['apellido2Usuario'],
-                'fechaNaceUsuario' => $_POST['fechaNaceUsuario'],
-                'telefonoUsuario' => $_POST['telefonoUsuario'],
-                'direccionUsuario' => $_POST['direccionUsuario'],
-                'usuario' => $_POST['usuario'],
-                'passUsuario' => $_POST['passUsuario'],
-                'rolUsuario' => $_POST['rolUsuario']
+                'idCliente' => $_POST['idCliente'],
+                'nombre1Cliente' => $_POST['nombre1Cliente'],
+                'nombre2Cliente' => $_POST['nombre2Cliente'],
+                'apellido1Cliente' => $_POST['apellido1Cliente'],
+                'apellido2Cliente' => $_POST['apellido2Cliente'],
+                'fechaNaceCliente' => $_POST['fechaNaceCliente'],
+                'telefonoCliente' => $_POST['telefonoCliente'],
+                'direccionCliente' => $_POST['direccionCliente'],
             ];
-            $resultado = $this->usuarioModel->addUsuario($data);
+            $resultado = $this->clienteModel->addCliente($data);
             if ($resultado) {
                 $mensaje = [
                     'mensaje' => 'insercion exitosa',
@@ -51,62 +48,49 @@ class Cliente extends Controller
             echo 'Atención! los datos no fueron enviados de un formulario';
         }   
     }
-    public function editarUsuario($id)
+    public function editarCliente($id)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = [
-                'idUsuario' => $id,
-                'nombre1Usuario' => $_POST['nombre1Usuario'],
-                'nombre2Usuario' => $_POST['nombre2Usuario'],
-                'apellido1Usuario' => $_POST['apellido1Usuario'],
-                'apellido2Usuario' => $_POST['apellido2Usuario'],
-                'fechaNaceUsuario' => $_POST['fechaNaceUsuario'],
-                'telefonoUsuario' => $_POST['telefonoUsuario'],
-                'direccionUsuario' => $_POST['direccionUsuario'],
-                'usuario' => $_POST['usuario'],
-                'passUsuario' => $_POST['passUsuario'],
-                'rolUsuario' => $_POST['rolUsuario']
+                'idCliente' => $id,
+                'nombre1Cliente' => $_POST['nombre1Cliente'],
+                'nombre2Cliente' => $_POST['nombre2Cliente'],
+                'apellido1Cliente' => $_POST['apellido1Cliente'],
+                'apellido2Cliente' => $_POST['apellido2Cliente'],
+                'fechaNaceCliente' => $_POST['fechaNaceCliente'],
+                'telefonoCliente' => $_POST['telefonoCliente'],
+                'direccionCliente' => $_POST['direccionCliente']
             ];
 
-            if ($this->usuarioModel->editUsuario($data)) {
+            if ($this->clienteModel->editCliente($data)) {
                 $data = [];
                 $this->index();
             } else {
                 die('ocurrió un error en la inserción !');
             };
         } else {
-            $usuario = $this->usuarioModel->getOne($id);
-            $roles = $this->usuarioModel->roles();
+            $cliente = $this->clienteModel->getOne($id);
             $data = [
-                'idUsuario' => $id,
-                'nombre1Usuario' => $usuario->nombre1,
-                'nombre2Usuario' => $usuario->nombre2,
-                'apellido1Usuario' => $usuario->apellido1,
-                'apellido2Usuario' => $usuario->apellido2,
-                'fechaNaceUsuario' => $usuario->fechaNacimiento,
-                'telefonoUsuario' => $usuario->telefono,
-                'direccionUsuario' => $usuario->direccion,
-                'usuario' => $usuario->usuario,
-                'passUsuario' => $usuario->passwordUsuario,
-                'rolUsuario' => $usuario->rol_idRol,
-                'roles' => $roles
+                'idCliente' => $id,
+                'nombre1Cliente' => $cliente->nombre1,
+                'nombre2Cliente' => $cliente->nombre2,
+                'apellido1Cliente' => $cliente->apellido1,
+                'apellido2Cliente' => $cliente->apellido2,
+                'fechaNaceCliente' => $cliente->fechaNacimiento,
+                'telefonoCliente' => $cliente->telefono,
+                'direccionCliente' => $cliente->direccion
             ];
-            /* $rol=[
-                'idRol' => $roles->idRol,
-                'nombreRol'=>$roles->nombreRol
-            ]; */
-            
-            $this->renderView('Usuario/UsuarioEditar', $data);
+            $this->renderView('Cliente/ClienteEditar', $data);
         }
     }
        
 
-    public function eliminarUsuario($id)
+    public function eliminarCliente($id)
     {
         $data = [
-            'idUsuario' => $id
+            'idCliente' => $id
         ];
-        if ($this->usuarioModel->elimUsuario($data)) {
+        if ($this->clienteModel->elimCliente($data)) {
             $this->index();
         } else {
             $this->index();
