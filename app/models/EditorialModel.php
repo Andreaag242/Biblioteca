@@ -9,7 +9,7 @@ class EditorialModel
         $this->db = new Dbase;
     }
 
-    public function verEditoriales()
+    public function verEditorial()
     {
         $this->db->query("SELECT idEditorial, nombreEditorial
         from editorial");

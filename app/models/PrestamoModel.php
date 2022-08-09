@@ -1,16 +1,16 @@
 <?php
 //modelo correspondiente a cada controlador
-class LibrosModel{
+class PrestamoModel{
     private $db;
 
     public function __construct(){
         $this->db = new Dbase;
     }
     
-    public function verLibros()
+    public function prestamosPendientes()
     {
-        $this->db->query("SELECT idLibro, nombreLibro, autor, disponible, cantidadTotal, editorial_idEditorial, nombreEditorial
-        from libros INNER JOIN 	editorial ON libros.editorial_idEditorial = editorial.idEditorial where libros.estado=0");
+        $this->db->query("SELECT idPrestamo, fechaPrestamo, fechaEntrega, cliente_idCliente, usuario
+        from encabezadoPrestamo where fechaEntrega IS NULL");
         $resultSet = $this->db->getAll();
         return $resultSet;
     }
@@ -51,16 +51,17 @@ class LibrosModel{
         }
     }
 
-    public function getOne($id)
+    public function buscPrestamo($datos)
     {
-        $this->db->query("SELECT * FROM libros where idLibro =:id");
-        $this->db->bind(':id', $id);
-        $resultSet = $this->db->getOne();
+        $valor=$this->db->query("SELECT idPrestamo, fechaPrestamo, fechaEntrega, cliente_idCliente, usuario
+        from encabezadoprestamo where cliente_idCliente=:id");
+        $valor->bindParam(':id', $datos['idCliente'], PDO::PARAM_INT);
+        $resultSet = $this->db->getAll();
         return $resultSet;
     }
 
-    public function editoriales(){
-        $this->db->query("SELECT * FROM editorial");
+    public function libros(){
+        $this->db->query("SELECT * FROM libros");
         $resultSet = $this->db->getAll();
         return $resultSet;
     }
