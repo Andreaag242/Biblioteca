@@ -21,8 +21,8 @@ class Inicio extends Controller
 
             session_start();
             $_SESSION['usuario'] = $data->usuario;
-
-            $this->renderView('Dashboard/Dashboard',$data);
+            $data = $this->usuarioModel->verUsuarios();
+            $this->renderView('Usuario/UsuarioInicio',$data);
         }
     }
 }
