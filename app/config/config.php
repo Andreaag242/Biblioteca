@@ -18,4 +18,4 @@ define('SITENAME', 'Aplicacion Hospital Version MVC');
 define('DB_HOST',  'localhost'); // ojo: cambiarla en el deploy
 define('DB_USER', 'root'); //USUARIO DE LA BD
 define('DB_PASSWORD', ''); //PASSWORD USUARIO DE LA BD
-define('DB_NAME', 'biblioteca0508'); //nombre de la base de datos con la que se va a trabajar en el proyecto
+define('DB_NAME', 'biblioteca'); //nombre de la base de datos con la que se va a trabajar en el proyecto
