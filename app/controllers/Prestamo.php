@@ -5,39 +5,50 @@ class Prestamo extends Controller
     public function __construct()
     {
         //Configuramos el modelo correspondiente a este controlador
+        $this->librosModel =  $this->loadModel('LibrosModel');
+        $this->clienteModel =  $this->loadModel('ClienteModel');
         $this->prestamoModel =  $this->loadModel('PrestamoModel');
     }
     public function index()
     {
         $data = $this->prestamoModel->prestamosPendientes();
         $this->renderView('Prestamo/PrestamoInicio', $data);
-
     }
 
-    public function formAdd(){
+    public function formAdd()
+    {
 
-        $data = $this->prestamoModel->libros();
+        $libros = $this->librosModel->verLibros();
+        $cliente = $this->clienteModel->verClientes();
+
+        $data = [
+            "libros" => $libros,
+            "clientes" =>$cliente
+        ];
+
+
         $this->renderView('Prestamo/PrestamoForm', $data);
     }
 
-    public function buscarPrestamos(){
+    public function buscarPrestamos()
+    {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $datos = [
                 'idCliente' => $_POST['idCliente']
             ];
             $resultado = $this->prestamoModel->buscPrestamo($datos);
-            if($resultado){
+            if ($resultado) {
                 $this->renderView('Prestamo/PrestamoInicio', $resultado);
-            }else{
+            } else {
                 $this->index();
             }
-            
         } else {
             $this->index();
-        } 
+        }
     }
 
-    public function agregarLibro(){
+    public function agregarLibro()
+    {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $data = [
                 'nombreLibro' => $_POST['nombreLibro'],
@@ -62,7 +73,7 @@ class Prestamo extends Controller
             }
         } else {
             echo 'Atención! los datos no fueron enviados de un formulario';
-        }   
+        }
     }
     public function editarLibro($id)
     {
@@ -93,7 +104,7 @@ class Prestamo extends Controller
                 'cantidadTotalLibro' => $libros->cantidadTotal,
                 'editorialLibro' => $libros->editorial_idEditorial,
                 'editoriales' => $edit
-                
+
             ];
             $this->renderView('Libros/LibrosEditar', $data);
         }
@@ -109,5 +120,4 @@ class Prestamo extends Controller
             $this->index();
         };
     }
-       
 }

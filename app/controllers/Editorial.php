@@ -46,11 +46,11 @@ class Editorial extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = [
-                'idEditorial' => $id,
+                'idEditorial' => $_POST['idEditorial'],
                 'nombreEditorial' => $_POST['nombreEditorial']
             ];
 
-            if ($this->EditorialModel->editEditorial($data)) {
+            if ($this->editorialModel->editEditorial($data)) {
                 $data = [];
                 $this->index();
             } else {
@@ -60,7 +60,7 @@ class Editorial extends Controller
             $editorial = $this->editorialModel->getOne($id);
             $data = [
                 'idEditorial' => $id,
-                'nombreEditorial' => $editorial->nombre
+                'nombreEditorial' => $editorial->nombreEditorial
             ];
             $this->renderView('Editorial/EditorialEditar', $data);
         }

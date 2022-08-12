@@ -36,10 +36,10 @@
                       <p class="text-xs text-black mb-0"><?php echo $editorial->nombreEditorial; ?></p>
                     </td>
                     <td class="align-middle">
-                      <a class="btn btn-primary btn-sm" href="<?php echo URLROOT; ?>Editorial/editareditorial/<?php echo $editorial->idEditorial;  ?>"><i class="bi bi-pencil-square">Editar</i></a>
+                      <a class="btn btn-primary btn-sm" href="<?php echo URLROOT; ?>Editorial/editarEditorial/<?php echo $editorial->idEditorial;  ?>"><i class="bi bi-pencil-square">Editar</i></a>
                     </td>
                     <td>
-                      <a class="btn btn-danger btn-sm" href="<?php echo URLROOT; ?>Editorial/eliminareditorial/<?php echo $editorial->idEditorial;  ?>"><i class="bi bi-trash3">Borrar</i></a>
+                      <a class="btn btn-danger btn-sm" href="<?php echo URLROOT; ?>Editorial/eliminarEditorial/<?php echo $editorial->idEditorial;  ?>"><i class="bi bi-trash3">Borrar</i></a>
                     </td>
                   </tr>
                 <?php endforeach; ?>

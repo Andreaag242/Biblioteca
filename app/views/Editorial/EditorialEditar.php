@@ -10,9 +10,11 @@
                     <div class="col-md-8">
                         <div class="col p-3 ps-5">
                             <form role="form" method="POST" action="<?php echo URLROOT; ?>Editorial/editarEditorial/<?php echo $data['idEditorial']; ?>">
-
-                                <input type="text" name="nombre1Cliente" class="form-control w-75" placeholder="Primer Nombre" value="<?php echo $data['nombre1Cliente']; ?>">
+                                <input type="text" name="idEditorial" class="form-control w-75" placeholder="id" value="<?php echo $data['idEditorial']; ?>" onlyread>
                                 <br>
+                                <input type="text" name="nombreEditorial" class="form-control w-75" placeholder="Nombre" value="<?php echo $data['nombreEditorial']; ?>">
+                                <br>
+                                
                         </div>
                     </div>
 

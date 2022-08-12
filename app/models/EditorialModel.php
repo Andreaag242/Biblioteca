@@ -12,7 +12,7 @@ class EditorialModel
     public function verEditorial()
     {
         $this->db->query("SELECT idEditorial, nombreEditorial
-        from editorial");
+        from editorial WHERE estado!=1");
         $resultSet = $this->db->getAll();
         return $resultSet;
     }
@@ -35,7 +35,7 @@ class EditorialModel
     public function editEditorial($data)
     {
 
-        $valor = $this->db->query("UPDATE `editorial` SET nombreEditorial=:nom where idLibro=:id");
+        $valor = $this->db->query("UPDATE `editorial` SET nombreEditorial=:nom where idEditorial=:id");
         //bindiamos
         $valor->bindParam(':id', $data['idEditorial'], PDO::PARAM_INT);
         $valor->bindParam(':nom', $data['nombreEditorial'], PDO::PARAM_STR);
