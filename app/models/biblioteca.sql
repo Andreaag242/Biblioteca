@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 06-08-2022 a las 03:57:34
+-- Tiempo de generación: 12-08-2022 a las 15:07:53
 -- Versión del servidor: 5.7.33
--- Versión de PHP: 8.1.7
+-- Versión de PHP: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -69,19 +69,20 @@ CREATE TABLE `detalleprestamo` (
 
 CREATE TABLE `editorial` (
   `idEditorial` int(11) NOT NULL,
-  `nombreEditorial` varchar(100) NOT NULL
+  `nombreEditorial` varchar(100) NOT NULL,
+  `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `editorial`
 --
 
-INSERT INTO `editorial` (`idEditorial`, `nombreEditorial`) VALUES
-(1, 'Planeta'),
-(2, 'Salamandra'),
-(3, 'El faquir'),
-(4, 'Barret'),
-(5, 'El cuervo');
+INSERT INTO `editorial` (`idEditorial`, `nombreEditorial`, `estado`) VALUES
+(1, 'Planet', 1),
+(2, 'Salamandra', 0),
+(3, 'El faquir', 0),
+(4, 'Barret', 1),
+(5, 'El cuervo', 1);
 
 -- --------------------------------------------------------
 
@@ -96,6 +97,14 @@ CREATE TABLE `encabezadoprestamo` (
   `cliente_idCliente` int(11) NOT NULL,
   `usuario` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `encabezadoprestamo`
+--
+
+INSERT INTO `encabezadoprestamo` (`idPrestamo`, `fechaPrestamo`, `fechaEntrega`, `cliente_idCliente`, `usuario`) VALUES
+(1, '2022-08-01', NULL, 1, 'Juanito'),
+(2, '2022-07-05', '2022-08-02', 1, 'Juanito');
 
 -- --------------------------------------------------------
 
@@ -131,7 +140,6 @@ CREATE TABLE `penalizacion` (
   `idPenalizacion` int(11) NOT NULL,
   `fechaPenalizacion` date NOT NULL,
   `fechaFinPenalizacion` date NOT NULL,
-  `idCliente` int(11) NOT NULL,
   `idPrestamo` int(11) NOT NULL,
   `cliente_idCliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -262,7 +270,7 @@ ALTER TABLE `editorial`
 -- AUTO_INCREMENT de la tabla `encabezadoprestamo`
 --
 ALTER TABLE `encabezadoprestamo`
-  MODIFY `idPrestamo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPrestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `libros`

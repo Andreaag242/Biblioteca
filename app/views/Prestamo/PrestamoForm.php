@@ -30,30 +30,7 @@ var_dump($data);
                             <br>
                             <input type="text" name="cantidadTotal" class="form-control w-75" placeholder="Cantidad Total">
                             <br>
-
-                            <div id="grid">
-
-
-
-                            </div>
-                            <?php //foreach ($libros as $libro) { 
-                            ?>
-                            <select class="form-select" name="librosPrestamo">
-                                <?php //foreach ($data['libros'] as $libro) :; 
-                                ?>
-                                <option value="<?php //echo $libro->idLibro; 
-                                                ?>"><?php echo $libro->nombreLibro; ?></option>
-                                <?php //endforeach; 
-                                ?>
-                            </select>
-                            <br><br>
-                            <?php //} 
-                            ?>
-
-                            <br><br>
-                            <button name="agregar" onclick="agregarFila($data)">fila</button>
-
-
+                            <a class="btn btn-primary btn-sm" href="<?php echo URLROOT; ?>Prestamo/FormAddLibro" data-dismiss="modal"><i class="bi bi-pencil-square">Escoger Libros</i></a>
 
                         </div>
 

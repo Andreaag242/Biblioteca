@@ -30,6 +30,27 @@ class Prestamo extends Controller
         $this->renderView('Prestamo/PrestamoForm', $data);
     }
 
+    public function formAddLibro()
+    {
+        /* if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $datos = [
+                'libro' => $_POST['libro[]']
+            ];
+            $libros = $this->librosModel->verLibros();
+            $edit = $this->librosModel->editoriales();
+            $data = [
+                'Libros' => $libros,
+                'editoriales' => $edit,
+                'datos' => $datos
+            ];
+           
+        }else {
+            $this->index();
+        } */
+        $data =[];
+        $this->renderView('Prestamo/PrestamoLibro', $data);
+    }
+
     public function buscarPrestamos()
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
