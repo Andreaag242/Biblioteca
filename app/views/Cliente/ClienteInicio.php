@@ -5,16 +5,17 @@
   <div class="row">
   </div>
   <div class="row">
-    
+
     <div class="col-4">
-      
-    <a class="btn btn-success btn-sm" href="<?php echo URLROOT; ?>Cliente/formAdd"><i class="bi bi-trash3">Agregar</i></a></div>
-  
+
+      <a class="btn btn-success btn-sm" href="<?php echo URLROOT; ?>Cliente/formAdd"><i class="bi bi-trash3">Agregar</i></a>
+    </div>
+
     <div class="col-12">
       <div class="card mb-4">
         <div class="card-header pb-0">
           <h6>Clientes</h6>
-          
+
         </div>
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
@@ -35,7 +36,7 @@
                       <p class="text-xs text-black mb-0"><?php echo $cliente->idCliente; ?></p>
                     </td>
                     <td>
-                      <p class="text-xs text-black mb-0"><?php echo $cliente->nombre1.' '.$cliente->nombre2.' '.$cliente->apellido1.' '.$cliente->apellido2; ?></p>
+                      <p class="text-xs text-black mb-0"><?php echo $cliente->nombre1 . ' ' . $cliente->nombre2 . ' ' . $cliente->apellido1 . ' ' . $cliente->apellido2; ?></p>
                     </td>
                     <td class="align-middle text-center text-sm">
                       <p class="text-xs text-secondary mb-0"><?php echo $cliente->telefono; ?></p>

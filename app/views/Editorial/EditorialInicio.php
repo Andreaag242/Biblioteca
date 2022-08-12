@@ -14,7 +14,7 @@
     <div class="col-12">
       <div class="card mb-4">
         <div class="card-header pb-0">
-          <h6>Clientes</h6>
+          <h6>Editoriales</h6>
 
         </div>
         <div class="card-body px-0 pt-0 pb-2">
@@ -34,6 +34,12 @@
                     </td>
                     <td>
                       <p class="text-xs text-black mb-0"><?php echo $editorial->nombreEditorial; ?></p>
+                    </td>
+                    <td class="align-middle">
+                      <a class="btn btn-primary btn-sm" href="<?php echo URLROOT; ?>Editorial/editareditorial/<?php echo $editorial->idEditorial;  ?>"><i class="bi bi-pencil-square">Editar</i></a>
+                    </td>
+                    <td>
+                      <a class="btn btn-danger btn-sm" href="<?php echo URLROOT; ?>Editorial/eliminareditorial/<?php echo $editorial->idEditorial;  ?>"><i class="bi bi-trash3">Borrar</i></a>
                     </td>
                   </tr>
                 <?php endforeach; ?>
