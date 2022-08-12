@@ -26,7 +26,7 @@ session_start();
   <link rel="apple-touch-icon" sizes="76x76" href="<?php echo URLROOT; ?>img/apple-icon.png">
   <link rel="icon" type="image/png" href="<?php echo URLROOT; ?>img/favicon.png">
   <title>
-    Argon Dashboard 2 by Creative Tim
+    Biblioteca Almejandría
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
