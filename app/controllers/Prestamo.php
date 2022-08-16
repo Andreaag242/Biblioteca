@@ -31,24 +31,25 @@ class Prestamo extends Controller
     }
 
     public function formAddLibro()
-    {
-        /* if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $datos = [
-                'libro' => $_POST['libro[]']
-            ];
+    {   $data = [];
+        $this->renderView('Prestamo/PrestamoLibro', $data);
+    }
+
+    public function formVerifLibro(){
+        $libros = [];
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $select = $_POST["libros"];
             $libros = $this->librosModel->verLibros();
             $edit = $this->librosModel->editoriales();
             $data = [
                 'Libros' => $libros,
                 'editoriales' => $edit,
-                'datos' => $datos
+                'seleccion' => $select
             ];
-           
+            $this->renderView('Prestamo/PrestamoLibro', $data);
         }else {
             $this->index();
-        } */
-        $data =[];
-        $this->renderView('Prestamo/PrestamoLibro', $data);
+        }
     }
 
     public function buscarPrestamos()
