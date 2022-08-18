@@ -60,11 +60,7 @@ class PrestamoModel{
         return $resultSet;
     }
 
-    public function libros(){
-        $this->db->query("SELECT * FROM libros");
-        $resultSet = $this->db->getAll();
-        return $resultSet;
-    }
+    
     public function elimLibro($data){
 
         $valor=$this->db->query("UPDATE `libros` SET  estado=1 Where idLibro=:id");
