@@ -82,6 +82,8 @@ class Cliente extends Controller
             ];
             $this->renderView('Cliente/ClienteEditar', $data);
         }
+
+        
     }
        
 

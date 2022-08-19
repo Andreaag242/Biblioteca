@@ -90,5 +90,12 @@ class Libros extends Controller
             $this->index();
         };
     }
+
+    public function getOne()
+    {
+        $data = $this->librosModel->getOne($_POST['valorOption']);
+        $datos = json_encode($data);
+        echo $datos;
+    }
        
 }

@@ -53,7 +53,8 @@ class LibrosModel{
 
     public function getOne($id)
     {
-        $this->db->query("SELECT * FROM libros where idLibro =:id");
+        $this->db->query("SELECT  idLibro, nombreLibro, autor, disponible, cantidadTotal, editorial_idEditorial, nombreEditorial
+        from libros INNER JOIN 	editorial ON libros.editorial_idEditorial = editorial.idEditorial FROM libros where idLibro =:id");
         $this->db->bind(':id', $id);
         $resultSet = $this->db->getOne();
         return $resultSet;
