@@ -31,6 +31,7 @@ session_start();
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
   <link href="<?php echo URLROOT; ?>css/nucleo-icons.css" rel="stylesheet" />
   <link href="<?php echo URLROOT; ?>css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
@@ -47,7 +48,7 @@ session_start();
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="Biblioteca\app\assets\img\icon.png" target="_blank">
-        <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
+        <img src="<?php echo URLROOT; ?>public/img/icon.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold">Biblioteca de Almejandría</span>
       </a>
     </div>
@@ -57,7 +58,7 @@ session_start();
         <li class="nav-item">
           <a class="nav-link " href="<?php echo URLROOT; ?>Usuario">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+              <i class="bi bi-person-badge text-warning text-lg opacity-10 mb-2"></i>
             </div>
             <span class="nav-link-text ms-1">Usuarios</span>
           </a>
@@ -65,7 +66,7 @@ session_start();
         <li class="nav-item">
           <a class="nav-link active" href="<?php echo URLROOT; ?>Cliente">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+              <i class="bi bi-table text-primary text-lg opacity-10 mb-2"></i>
             </div>
             <span class="nav-link-text ms-1">Clientes</span>
           </a>
@@ -73,7 +74,7 @@ session_start();
         <li class="nav-item">
           <a class="nav-link " href="<?php echo URLROOT; ?>Libros">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+              <i class="bi bi-book text-success text-lg opacity-10 mb-2"></i>
             </div>
             <span class="nav-link-text ms-1">Libros</span>
           </a>
@@ -81,7 +82,7 @@ session_start();
         <li class="nav-item">
           <a class="nav-link " href="<?php echo URLROOT; ?>Editorial">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+              <i class="bi bi-pencil-square text-danger text-lg opacity-10 mb-2"></i>
             </div>
             <span class="nav-link-text ms-1">Editoriales</span>
           </a>
@@ -89,19 +90,19 @@ session_start();
         <li class="nav-item">
           <a class="nav-link " href="<?php echo URLROOT; ?>Prestamo">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-collection text-info text-sm opacity-10"></i>
+              <i class="bi bi-calendar3-range text-info text-lg opacity-10 mb-2"></i>
             </div>
             <span class="nav-link-text ms-1">Prestamos</span>
           </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link " href="../pages/sign-up.html">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-collection text-info text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Sign Up</span>
           </a>
-        </li>
+        </li> -->
       </ul>
     </div>
     <div>
