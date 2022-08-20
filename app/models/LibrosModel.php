@@ -16,15 +16,15 @@ class LibrosModel{
     }
     public function addLibro($data){
 
-        $valor=$this->db->query("INSERT INTO `libros` (nombreLibro, autor, disponible, cantidadTotal, editorial_idEditorial) 
-        VALUES (:nom,:autor,:disp,:cant,:edit)");
+        $valor=$this->db->query("INSERT INTO libros (nombreLibro, autor, disponible, cantidadTotal, editorial_idEditorial, estado) 
+        VALUES (:nom,:autor,:disp,:cant,:edit, 0)");
         //bindiamos
         
         $valor->bindParam(':nom', $data['nombreLibro'],PDO::PARAM_STR);
         $valor->bindParam(':autor', $data['autorLibro'],PDO::PARAM_STR);
-        $valor->bindParam(':disp', $data['disponibleLibro'],PDO::PARAM_STR);
-        $valor->bindParam(':cant', $data['cantidadTotalLibro'],PDO::PARAM_STR);
-        $valor->bindParam(':edit', $data['editorialLibro'],PDO::PARAM_STR);
+        $valor->bindParam(':disp', $data['disponibleLibro'],PDO::PARAM_INT);
+        $valor->bindParam(':cant', $data['cantidadTotalLibro'],PDO::PARAM_INT);
+        $valor->bindParam(':edit', $data['editorialLibro'],PDO::PARAM_INT);
         //verificamos la ejecucion correcta del query*/
         if ($this->db->execute()) {
             return true;
@@ -40,9 +40,9 @@ class LibrosModel{
         $valor->bindParam(':id', $data['idLibro'],PDO::PARAM_INT);
         $valor->bindParam(':nom', $data['nombreLibro'],PDO::PARAM_STR);
         $valor->bindParam(':autor', $data['autorLibro'],PDO::PARAM_STR);
-        $valor->bindParam(':disp', $data['disponibleLibro'],PDO::PARAM_STR);
-        $valor->bindParam(':cant', $data['cantidadTotalLibro'],PDO::PARAM_STR);
-        $valor->bindParam(':edit', $data['editorialLibro'],PDO::PARAM_STR);
+        $valor->bindParam(':disp', $data['disponibleLibro'],PDO::PARAM_INT);
+        $valor->bindParam(':cant', $data['cantidadTotalLibro'],PDO::PARAM_INT);
+        $valor->bindParam(':edit', $data['editorialLibro'],PDO::PARAM_INT);
         //verificamos la ejecucion correcta del query*/
         if ($this->db->execute()) {
             return true;
@@ -53,8 +53,8 @@ class LibrosModel{
 
     public function getOne($id)
     {
-        $this->db->query("SELECT  idLibro, nombreLibro, autor, disponible, cantidadTotal, editorial_idEditorial, nombreEditorial
-        from libros INNER JOIN 	editorial ON libros.editorial_idEditorial = editorial.idEditorial FROM libros where idLibro =:id");
+        $this->db->query("SELECT idLibro, nombreLibro, autor, disponible, cantidadTotal, editorial_idEditorial, nombreEditorial
+        from libros INNER JOIN 	editorial ON libros.editorial_idEditorial = editorial.idEditorial where libros.estado=0 AND idLibro =:id");
         $this->db->bind(':id', $id);
         $resultSet = $this->db->getOne();
         return $resultSet;
@@ -77,5 +77,15 @@ class LibrosModel{
         } else {
             return false;
         }
+    }
+
+    // buscar libros
+    public function buscLibros($datos)
+    {
+        $valor=$this->db->query("SELECT idLibro, nombreLibro, autor, disponible, cantidadTotal, editorial_idEditorial, nombreEditorial
+        from libros INNER JOIN 	editorial ON libros.editorial_idEditorial = editorial.idEditorial where libros.estado=0 AND nombreLibro LIKE %:nombre% ");
+        $valor->bindParam(':nombre', $datos['nombreLibro'], PDO::PARAM_STR);
+        $resultSet = $this->db->getOne();
+        return $resultSet;
     }
 }

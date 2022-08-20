@@ -7,17 +7,22 @@ class Cliente extends Controller
         //Configuramos el modelo correspondiente a este controlador
         $this->clienteModel =  $this->loadModel('ClienteModel');
     }
+
+    //funcion mostrar el inicio
     public function index()
     {
         $data = $this->clienteModel->verClientes();
         $this->renderView('Cliente/ClienteInicio', $data);
 
     }
+
+    //funcion mostrar el formulario agregar o editar Clientes
     public function formAdd(){
         $data = [];
         $this->renderView('Cliente/ClienteForm', $data);
     }
 
+    // funcion para agregar Clientes
     public function agregarCliente(){
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $data = [
@@ -48,6 +53,8 @@ class Cliente extends Controller
             echo 'Atención! los datos no fueron enviados de un formulario';
         }   
     }
+
+    // funcion para editar las Clientes
     public function editarCliente($id)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -86,7 +93,7 @@ class Cliente extends Controller
         
     }
        
-
+    // funcion para eliminar Clientes de forma lógica
     public function eliminarCliente($id)
     {
         $data = [

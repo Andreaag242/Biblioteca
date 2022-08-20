@@ -19,8 +19,8 @@ class EditorialModel
     public function addEditorial($data)
     {
 
-        $valor = $this->db->query("INSERT INTO `editorial` (nombreEditorial) 
-        VALUES (:nom)");
+        $valor = $this->db->query("INSERT INTO `editorial` (nombreEditorial, estado) 
+        VALUES (:nom, 0)");
         //bindiamos
 
         $valor->bindParam(':nom', $data['nombreEditorial'], PDO::PARAM_STR);

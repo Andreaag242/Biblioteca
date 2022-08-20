@@ -7,17 +7,22 @@ class Editorial extends Controller
         //Configuramos el modelo correspondiente a este controlador
         $this->editorialModel =  $this->loadModel('EditorialModel');
     }
+
+    //funcion mostrar el inicio
     public function index()
     {
         $data = $this->editorialModel->verEditorial();
         $this->renderView('Editorial/EditorialInicio', $data);
     }
+
+    //funcion mostrar el formulario agregar o editar editoriales
     public function formAdd()
     {
         $data = [];
         $this->renderView('Editorial/EditorialForm', $data);
     }
 
+    // funcion para agregar editoriales
     public function agregarEditorial()
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -42,6 +47,7 @@ class Editorial extends Controller
             echo 'Atención! los datos no fueron enviados de un formulario';
         }
     }
+    // funcion para editar las editoriales
     public function editarEditorial($id)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -66,7 +72,7 @@ class Editorial extends Controller
         }
     }
 
-
+    // funcion para eliminar editoriales de forma lógica
     public function eliminarEditorial($id)
     {
         $data = [
@@ -77,5 +83,13 @@ class Editorial extends Controller
         } else {
             $this->index();
         };
+    }
+
+    // Imprimir reportes de Editoriales
+    public function ImprimirListado()
+    {
+        $data = $this->editorialModel->verEditorial();
+        //$data = [];
+        $this->renderView('Editorial/rptListadoEditorial', $data);
     }
 }

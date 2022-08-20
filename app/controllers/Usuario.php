@@ -7,17 +7,22 @@ class Usuario extends Controller
         //Configuramos el modelo correspondiente a este controlador
         $this->usuarioModel =  $this->loadModel('UsuarioModel');
     }
+
+    //funcion mostrar el inicio
     public function index()
     {
         $data = $this->usuarioModel->verUsuarios();
         $this->renderView('Usuario/UsuarioInicio', $data);
 
     }
+
+    //funcion mostrar el formulario agregar o editar editoriales
     public function formAdd(){
         $data = $this->usuarioModel->roles();
         $this->renderView('Usuario/UsuarioForm', $data);
     }
 
+    // funcion para agregar editoriales
     public function agregarUsuario(){
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $data = [
@@ -51,6 +56,8 @@ class Usuario extends Controller
             echo 'Atención! los datos no fueron enviados de un formulario';
         }   
     }
+
+    // funcion para editar las editoriales
     public function editarUsuario($id)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

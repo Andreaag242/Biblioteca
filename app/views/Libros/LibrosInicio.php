@@ -5,11 +5,17 @@
   <div class="row">
   </div>
   <div class="row">
-
+    <div class="col-8">
+      <form role="form" method="POST" action="<?php echo URLROOT; ?>Libros/buscarLibros" class="d-flex">
+        <input type="text" name="nombreLibro" class="form-control w-15" placeholder="Buscar nombre">
+        <button type="submit" class="btn bg-gradient-dark mt-1 ms-3">Buscar</button>
+      </form>
+    </div>
     <div class="col-4">
       
-    <a class="btn btn-success btn-sm" href="<?php echo URLROOT; ?>Libros/formAdd"><i class="bi bi-trash3">Agregar</i></a></div>
-  
+    <a class="btn btn-success btn-sm" href="<?php echo URLROOT; ?>Libros/formAdd"><i class="bi bi-trash3">Agregar</i></a>
+    <a class="btn btn-success btn-sm" href="<?php echo URLROOT; ?>Libros/ImprimirListado"><i class="bi bi-printer"></i></a></small>
+    </div>
     <div class="col-12">
       <div class="card mb-4">
         <div class="card-header pb-0">

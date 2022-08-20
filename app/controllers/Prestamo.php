@@ -9,12 +9,15 @@ class Prestamo extends Controller
         $this->clienteModel =  $this->loadModel('ClienteModel');
         $this->prestamoModel =  $this->loadModel('PrestamoModel');
     }
+
+    //funcion mostrar el inicio
     public function index()
     {
         $data = $this->prestamoModel->prestamosPendientes();
         $this->renderView('Prestamo/PrestamoInicio', $data);
     }
 
+    //funcion mostrar el formulario agregar o editar prestamo
     public function formAdd()
     {
 
@@ -28,10 +31,7 @@ class Prestamo extends Controller
         $this->renderView('Prestamo/PrestamoForm', $data);
     }
 
-<<<<<<< HEAD
-    
-=======
-    public function formAddLibro()
+    /* public function formAddLibro()
     {   $data = [];
         $this->renderView('Prestamo/PrestamoLibro', $data);
     }
@@ -51,9 +51,9 @@ class Prestamo extends Controller
         }else {
             $this->index();
         }
-    }
->>>>>>> eac8a0e690ac5092b67a82f7c137c9ba8c7cf940
+    } */
 
+    //función buscar prestamo
     public function buscarPrestamos()
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -71,7 +71,7 @@ class Prestamo extends Controller
         }
     }
 
-    public function agregarLibro()
+   /*  public function agregarLibro()
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $data = [
@@ -143,5 +143,5 @@ class Prestamo extends Controller
         } else {
             $this->index();
         };
-    }
+    } */
 }

@@ -7,11 +7,15 @@ class Inicio extends Controller
     {
         $this->usuarioModel =  $this->loadModel('UsuarioModel');
     }
+
+    //funcion mostrar el inicio
     public function index()
     {
         $data = [];  //temporal porque no hay
         $this->renderView('Inicio', $data);
     }
+
+    // funcion abrir menu
     public function abrirMenu(){
         $data = [];
         $data=$this->usuarioModel->validarUsuario();

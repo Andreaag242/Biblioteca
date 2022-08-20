@@ -12,7 +12,7 @@ define('APPROOT', dirname(dirname(__FILE__)));
 define('URLROOT', 'http://localhost:8000/biblioteca/');
 //define('URLROOT', 'http://localhost/Biblioteca/');
 //NOMBRE DE LA APLICACIÖN
-define('SITENAME', 'Aplicacion Hospital Version MVC');
+define('SITENAME', 'Aplicacion Biblioteca Version MVC');
 //CREDENCIALES PARA LA BASE DE DATOS
 //FIXME: Cambiar a la forma nueva de hacer const
 define('DB_HOST',  'localhost'); // ojo: cambiarla en el deploy

@@ -7,8 +7,8 @@
   <div class="row">
 
     <div class="col-4">
-
       <a class="btn btn-success btn-sm" href="<?php echo URLROOT; ?>Editorial/formAdd"><i class="bi bi-trash3">Agregar</i></a>
+      <a class="btn btn-success btn-sm" href="<?php echo URLROOT; ?>Editorial/ImprimirListado"><i class="bi bi-printer"></i></a></small>
     </div>
 
     <div class="col-12">

@@ -18,11 +18,11 @@
                             <form role="form" method="POST" action="<?php echo URLROOT; ?>Libros/agregarLibro">
                                 <input type="text" name="nombreLibro" class="form-control w-50" placeholder="Nombre">
                                 <br>
-                                <input type="text" name="autor" class="form-control w-75" placeholder="Autor">
+                                <input type="text" name="autorLibro" class="form-control w-75" placeholder="Autor">
                                 <br>
-                                <input type="text" name="disponible" class="form-control w-75" placeholder="disponible">
+                                <input type="text" name="disponibleLibro" class="form-control w-75" placeholder="disponible">
                                 <br>
-                                <input type="text" name="cantidadTotal" class="form-control w-75" placeholder="Cantidad Total">
+                                <input type="text" name="cantidadTotalLibro" class="form-control w-75" placeholder="Cantidad Total">
                                 <br>
                             <select class="form-select" name="editorialLibro">
                                 <?php foreach ($data as $edit) :; ?>

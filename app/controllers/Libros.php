@@ -7,28 +7,34 @@ class Libros extends Controller
         //Configuramos el modelo correspondiente a este controlador
         $this->librosModel =  $this->loadModel('LibrosModel');
     }
+
+    //funcion mostrar el inicio
     public function index()
     {
         $data = $this->librosModel->verLibros();
         $this->renderView('Libros/LibrosInicio', $data);
 
     }
+
+    //funcion mostrar el formulario agregar o editar libros
     public function formAdd(){
         $data = $this->librosModel->editoriales();
         $this->renderView('Libros/LibrosForm', $data);
     }
 
+    // funcion para agregar libros
     public function agregarLibro(){
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $data = [
                 'nombreLibro' => $_POST['nombreLibro'],
-                'autorLibro' => $_POST['autor'],
-                'disponibleLibro' => $_POST['disponible'],
-                'cantidadTotalLibro' => $_POST['cantidadTotal'],
+                'autorLibro' => $_POST['autorLibro'],
+                'disponibleLibro' => $_POST['disponibleLibro'],
+                'cantidadTotalLibro' => $_POST['cantidadTotalLibro'],
                 'editorialLibro' => $_POST['editorialLibro']
             ];
             $resultado = $this->librosModel->addLibro($data);
             if ($resultado) {
+                
                 $mensaje = [
                     'mensaje' => 'insercion exitosa',
                     'color' => 'alert alert-success'
@@ -45,6 +51,8 @@ class Libros extends Controller
             echo 'Atención! los datos no fueron enviados de un formulario';
         }   
     }
+
+    // funcion para editar las libros
     public function editarLibro($id)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -79,6 +87,8 @@ class Libros extends Controller
             $this->renderView('Libros/LibrosEditar', $data);
         }
     }
+
+    // funcion para eliminar libros de forma lógica
     public function eliminarLibro($id)
     {
         $data = [
@@ -91,11 +101,38 @@ class Libros extends Controller
         };
     }
 
+    //funcion traer un libro
     public function getOne()
     {
         $data = $this->librosModel->getOne($_POST["valorOption"]);
         $datos = json_encode($data);
         echo $datos;
+    }
+
+    // Imprimir reportes de libros
+    public function ImprimirListado()
+    {
+        $data = $this->librosModel->verLibros();
+        //$data = [];
+        $this->renderView('Libros/rptListadoLibros', $data);
+    }
+
+    // funcion buscar libros
+    public function buscarLibros()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $datos = [
+                'nombreLibro' => $_POST['nombreLibro']
+            ];
+            $resultado = $this->prestamoModel->buscPrestamo($datos);
+            if ($resultado) {
+                $this->renderView('Libros/LibrosInicio', $resultado);
+            } else {
+                $this->index();
+            }
+        } else {
+            $this->index();
+        }
     }
        
 }
