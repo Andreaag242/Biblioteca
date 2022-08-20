@@ -93,7 +93,7 @@ class Libros extends Controller
 
     public function getOne()
     {
-        $data = $this->librosModel->getOne($_POST['valorOption']);
+        $data = $this->librosModel->getOne($_POST["valorOption"]);
         $datos = json_encode($data);
         echo $datos;
     }

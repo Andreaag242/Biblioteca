@@ -31,6 +31,7 @@
                             <div class="row mb-1">
                                 <div class="col-1"><label for="">Libros:</label></div>
                                 <div class="col-4">
+                                <form action="#" method="post" id="frmCliente">
                                     <select class="form-select" name="libro" id="valorOption">
                                         <?php foreach ($data['libros'] as $libro) :; ?>
                                             <option value="<?php echo $libro->idLibro; ?>"><?php echo $libro->nombreLibro . ' ' . $libro->nombreEditorial; ?></option>

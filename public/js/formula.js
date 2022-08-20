@@ -1,11 +1,11 @@
 const URLROOT = "http://localhost:8000/biblioteca/";
 
-function agregarDetalle() {
+function agregarDetalle(id) {
   let detalle = document.getElementById("detalle");
   let valorOption = document.getElementById("valorOption");
   let valor = valorOption.options[valorOption.selectedIndex].value;
   console.log(valor);
-  fetch(URLROOT + " Libros/getOne", {
+  fetch(URLROOT+"Libros/getOne", {
     method: "post",
     body: valor //cors
   })
@@ -16,7 +16,16 @@ function agregarDetalle() {
     .catch((error) => {
       console.log("hay un error :", error);
     });
-  
+  let fila = `
+    <tr>
+    
+      <td><input type="text" value ="hola" name="iditem[]"> </td>  
+      <td><input type="text" name="descripcion[]" id="descripcion[]" value='${valor}'></td>
+      <td><input type="text" name="posologia[]" id="posologia[]" value="'posologia'"></td>
+      
+    </tr>    
+    `;
+  detalle.innerHTML += fila;
 }
 
 function leerItem() {
