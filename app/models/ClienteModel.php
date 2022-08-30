@@ -88,4 +88,55 @@ class ClienteModel
             return false;
         }
     }
+    // buscar libros
+    public function buscCliente($datos)
+    {
+        $this->db->query("SELECT idCliente, nombre1, nombre2, apellido1, apellido2, fechaNacimiento, telefono, direccion, activo
+        from cliente where activo!=1");
+        $nombre = "%".$datos['nombreLibro']."%";
+        $this->db->bind(':nombre', $nombre);
+        $resultSet = $this->db->getAll();
+        return $resultSet;
+
+    }
+
+    // contar las filas
+    public function rowCount()
+    {
+        $this->db->query("SELECT * FROM cliente");
+        $resultSet = $this->db->rowCount();
+        return $resultSet;
+    }
+
+
+    /**
+     * totalMedicos
+     *  Devuelve total medicos para la paginacion
+     * @return void
+     */
+    public function totalClientes()
+    {
+        $this->db->query("SELECT COUNT(idCliente) as numevents FROM cliente");
+        $resultSet = $this->db->getOne();
+        return  $resultSet;
+    }
+
+
+    /**
+     * totalPages
+     * devuelve el total de paginas de acuerdo al limite y al offset
+     * @param  mixed $perPage
+     * @param  mixed $offset
+     * @return void
+     */
+    public function totalPages($perPage, $offset)
+    {
+        $this->db->query("SELECT idCliente, nombre1, nombre2, apellido1, apellido2, fechaNacimiento, telefono, direccion, activo
+        from cliente where activo!=1 ORDER BY apellido1 ASC LIMIT :limit OFFSET :offset");
+        $this->db->bind(":limit", $perPage);
+        $this->db->bind(":offset", $offset);
+        $resultSet = $this->db->getAll();
+        return $resultSet;
+    }
+    //=========================== paginacion  =====================
 }

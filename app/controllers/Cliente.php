@@ -9,9 +9,23 @@ class Cliente extends Controller
     }
 
     //funcion mostrar el inicio
-    public function index()
+    public function index($currentPage = 1)
     {
-        $data = $this->clienteModel->verClientes();
+        $perPage = 15;
+        $totalCount = $this->clienteModel->totalClientes();
+        $pagination = new Paginator($currentPage, $perPage, $totalCount);
+        $offset = $pagination->offset();
+        $clientes = $this->clienteModel->totalPages($perPage, $offset);
+
+        $data = [
+            'cliente' => $clientes,
+            'previous' => $pagination->previous(),
+            'next' => $pagination->next(),
+            'total' => $pagination->totalPages(),
+            'currentPage' => $currentPage
+
+        ];
+
         $this->renderView('Cliente/ClienteInicio', $data);
 
     }
@@ -104,5 +118,31 @@ class Cliente extends Controller
         } else {
             $this->index();
         };
+    }
+
+    //funcion buscar Cliente
+    public function buscarCliente()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $datos = [
+                'idCliente' => $_POST['idCliente']
+            ];
+            $resultado = $this->clienteModel->buscCliente($datos);
+            if ($resultado) {
+                $this->renderView('Cliente/ClienteInicio', $resultado);
+            } else {
+                $this->index();
+            }
+        } else {
+            $this->index();
+        }
+    }
+
+    // Imprimir reportes de clientes
+    public function ImprimirListado()
+    {
+        $data = $this->clienteModel->verClientes();
+        //$data = [];
+        $this->renderView('Cliente/rptListadoClientes', $data);
     }
 }

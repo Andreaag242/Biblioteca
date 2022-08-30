@@ -52,7 +52,7 @@ class Libros extends Controller
         }   
     }
 
-    // funcion para editar las libros
+    // funcion para editar los libros
     public function editarLibro($id)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -124,7 +124,7 @@ class Libros extends Controller
             $datos = [
                 'nombreLibro' => $_POST['nombreLibro']
             ];
-            $resultado = $this->prestamoModel->buscPrestamo($datos);
+            $resultado = $this->librosModel->buscLibro($datos);
             if ($resultado) {
                 $this->renderView('Libros/LibrosInicio', $resultado);
             } else {

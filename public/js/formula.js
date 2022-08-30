@@ -1,16 +1,12 @@
-<<<<<<< HEAD
-const URLROOT = "http://localhost:8000/2278769/hospv2/";
-=======
 const URLROOT = "http://localhost:8000/biblioteca/";
->>>>>>> 91d8b275f1aa66f0d53cf1802ee89d27eb231f66
+
 
 function agregarDetalle(id) {
   let detalle = document.getElementById("detalle");
   let valorOption = document.getElementById("valorOption");
   let valor = valorOption.options[valorOption.selectedIndex].value;
   console.log(valor);
-<<<<<<< HEAD
-=======
+
   fetch(URLROOT+"Libros/getOne", {
     method: "post",
     body: valor //cors
@@ -22,16 +18,12 @@ function agregarDetalle(id) {
     .catch((error) => {
       console.log("hay un error :", error);
     });
->>>>>>> 91d8b275f1aa66f0d53cf1802ee89d27eb231f66
+
   let fila = `
     <tr>
     
       <td><input type="text" value ="hola" name="iditem[]"> </td>  
-<<<<<<< HEAD
-      <td><input type="text" name="descripcion[]" id="descripcion[]" value='valor'></td>
-=======
       <td><input type="text" name="descripcion[]" id="descripcion[]" value='${valor}'></td>
->>>>>>> 91d8b275f1aa66f0d53cf1802ee89d27eb231f66
       <td><input type="text" name="posologia[]" id="posologia[]" value="'posologia'"></td>
       
     </tr>    
@@ -70,11 +62,6 @@ function llenarMedico() {
     });
 }
 
-<<<<<<< HEAD
-leerItem();
-llenarMedico();
-=======
->>>>>>> 91d8b275f1aa66f0d53cf1802ee89d27eb231f66
 
 /* window.addEventListener(
   "load",

@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-8">
       <form role="form" method="POST" action="<?php echo URLROOT; ?>Libros/buscarLibros" class="d-flex">
-        <input type="text" name="nombreLibro" class="form-control w-15" placeholder="Buscar nombre">
+        <input type="text" name="nombreLibro" class="form-control w-20" placeholder="Buscar nombre">
         <button type="submit" class="btn bg-gradient-dark mt-1 ms-3">Buscar</button>
       </form>
     </div>

@@ -80,12 +80,13 @@ class LibrosModel{
     }
 
     // buscar libros
-    public function buscLibros($datos)
+    public function buscLibro($datos)
     {
-        $valor=$this->db->query("SELECT idLibro, nombreLibro, autor, disponible, cantidadTotal, editorial_idEditorial, nombreEditorial
-        from libros INNER JOIN 	editorial ON libros.editorial_idEditorial = editorial.idEditorial where libros.estado=0 AND nombreLibro LIKE %:nombre% ");
-        $valor->bindParam(':nombre', $datos['nombreLibro'], PDO::PARAM_STR);
-        $resultSet = $this->db->getOne();
+        $this->db->query("SELECT idLibro, nombreLibro, autor, disponible, cantidadTotal, editorial_idEditorial, nombreEditorial
+        from libros INNER JOIN 	editorial ON libros.editorial_idEditorial = editorial.idEditorial where libros.estado=0 AND nombreLibro LIKE :nombre ");
+        $nombre = "%".$datos['nombreLibro']."%";
+        $this->db->bind(':nombre', $nombre);
+        $resultSet = $this->db->getAll();
         return $resultSet;
     }
 }

@@ -6,6 +6,7 @@ class Usuario extends Controller
     {
         //Configuramos el modelo correspondiente a este controlador
         $this->usuarioModel =  $this->loadModel('UsuarioModel');
+        
     }
 
     //funcion mostrar el inicio

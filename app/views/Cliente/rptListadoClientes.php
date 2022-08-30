@@ -20,32 +20,35 @@ $pdf->SetFont('Arial', 'B', 12);
 
 $pdf->Cell(180, 6,  SITENAME, 0, 1, 'C');
 $pdf->Ln(3);
-$pdf->Cell(180, 6, 'Reporte de Editoriales ', 0, 1, 'C');
+$pdf->Cell(180, 6, 'Reporte de Clientes ', 0, 1, 'C');
 $pdf->Ln(8);
 
 //Creamos las celdas para los títulos de cada columna y le asignamos un fondo gris y el tipo de letra
 $pdf->SetFillColor(232, 232, 232);
 $pdf->SetFont('Arial', 'B', 10);
-$pdf->Cell(30, 6, utf8_decode('Código'), 1, 0, 'C', 1);
-$pdf->Cell(98, 6, 'Nombre', 1, 0, 'C', 1);
-
-
+$pdf->Cell(63, 6, 'Nombre', 1, 0, 'C', 1);
+$pdf->Cell(25, 6, utf8_decode('Identificacion'), 1, 0, 'C', 1);
+$pdf->Cell(40, 6, 'Fecha Nacimiento', 1, 0, 'C', 1);
+$pdf->Cell(30, 6, utf8_decode('Telefono'), 1, 0, 'C', 1);
+$pdf->Cell(35, 6, 'Direccion', 1, 0, 'C', 1);
 
 $pdf->Ln(10);
 
 //Table with 20 rows and 4 columns
-$pdf->SetWidths(array(30, 98));
+$pdf->SetWidths(array(63, 25, 40, 30, 35));
 
 /* require_once('app/listarPacientes.php'); */
 
-foreach ($data as $editorial) {
+foreach ($data as $cliente) {
     #$nombre = $reg->nombre;
-    $codigo = $editorial->idEditorial;
-    $nombre = $editorial->nombreEditorial;
-    
+    $nombre = $cliente->nombre1 . ' ' . $cliente->nombre2 . ' ' . $cliente->apellido1 . ' ' . $cliente->apellido2;
+    $id = $cliente->idCliente;
+    $fech = $cliente->fechaNacimiento;
+    $tel = $cliente->telefono;
+    $direc = $cliente->direccion;
 
     $pdf->SetFont('Arial', '', 10);
-    $pdf->Row(array($codigo, $nombre));
+    $pdf->Row(array($nombre, utf8_decode($id), $fech, $tel, $direc));
 };
 
 $pdf->footer();
