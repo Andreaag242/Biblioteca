@@ -64,7 +64,7 @@ session_start();
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="<?php echo URLROOT; ?>Cliente">
+          <a class="nav-link" href="<?php echo URLROOT; ?>Cliente">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="bi bi-table text-primary text-lg opacity-10 mb-2"></i>
             </div>
