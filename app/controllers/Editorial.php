@@ -9,9 +9,22 @@ class Editorial extends Controller
     }
 
     //funcion mostrar el inicio
-    public function index()
+    public function index($currentPage = 1)
     {
-        $data = $this->editorialModel->verEditorial();
+        $perPage = 15;
+        $totalCount = $this->editorialModel->totalEditorial();
+        $pagination = new Paginator($currentPage, $perPage, $totalCount);
+        $offset = $pagination->offset();
+        $editorial = $this->editorialModel->totalPages($perPage, $offset);
+        $data = [
+            'editorial' => $editorial,
+            'previous' => $pagination->previous(),
+            'next' => $pagination->next(),
+            'total' => $pagination->totalPages(),
+            'currentPage' => $currentPage
+
+        ];
+
         $this->renderView('Editorial/EditorialInicio', $data);
     }
 

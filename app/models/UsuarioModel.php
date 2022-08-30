@@ -116,4 +116,44 @@ class UsuarioModel{
             return false;
         }
     }
+
+    // contar las filas
+    public function rowCount()
+    {
+        $this->db->query("SELECT * FROM usuario");
+        $resultSet = $this->db->rowCount();
+        return $resultSet;
+    }
+
+
+    /**
+     * totalMedicos
+     *  Devuelve total medicos para la paginacion
+     * @return void
+     */
+    public function totalUsuario()
+    {
+        $this->db->query("SELECT COUNT(idUsuario) as numevents FROM usuario");
+        $resultSet = $this->db->getOne();
+        return  $resultSet;
+    }
+
+
+    /**
+     * totalPages
+     * devuelve el total de paginas de acuerdo al limite y al offset
+     * @param  mixed $perPage
+     * @param  mixed $offset
+     * @return void
+     */
+    public function totalPages($perPage, $offset)
+    {
+        $this->db->query("SELECT idUsuario, nombre1, nombre2, apellido1, apellido2, telefono, direccion, usuario, passwordUsuario, idRol, nombreRol
+        from usuario INNER JOIN rol ON usuario.rol_idRol = rol.idRol where rol_idRol!=3 ORDER BY nombre1 ASC LIMIT :limit OFFSET :offset");
+        $this->db->bind(":limit", $perPage);
+        $this->db->bind(":offset", $offset);
+        $resultSet = $this->db->getAll();
+        return $resultSet;
+    }
+    //=========================== paginacion  =====================
 }

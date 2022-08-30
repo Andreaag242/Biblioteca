@@ -12,15 +12,15 @@
       </form>
     </div>
     <div class="col-4">
-      
-    <a class="btn btn-success btn-sm" href="<?php echo URLROOT; ?>Libros/formAdd"><i class="bi bi-trash3">Agregar</i></a>
-    <a class="btn btn-success btn-sm" href="<?php echo URLROOT; ?>Libros/ImprimirListado"><i class="bi bi-printer"></i></a></small>
+
+      <a class="btn btn-success btn-sm" href="<?php echo URLROOT; ?>Libros/formAdd"><i class="bi bi-trash3">Agregar</i></a>
+      <a class="btn btn-success btn-sm" href="<?php echo URLROOT; ?>Libros/ImprimirListado"><i class="bi bi-printer"></i></a></small>
     </div>
     <div class="col-12">
       <div class="card mb-4">
         <div class="card-header pb-0">
           <h6>Libros</h6>
-          
+
         </div>
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
@@ -36,35 +36,48 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($data as $libros) :; ?>
-                  <tr>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-xs text-black mb-0"><?php echo $libros->idLibro; ?></p>
-                    </td>
-                    <td>
-                      <p class="text-xs text-black mb-0"><?php echo $libros->nombreLibro; ?></p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-xs text-secondary mb-0"><?php echo $libros->autor; ?></p>
-                    </td>
-                    <td class="align-middle text-center">
-                      <p class="text-xs text-secondary mb-0"><?php echo $libros->disponible; ?></p>
-                    </td>
-                    <td class="align-middle text-center">
-                      <p class="text-xs text-secondary mb-0"><?php echo $libros->cantidadTotal; ?></p>
-                    </td>
-                    <td class="align-middle text-center">
-                      <p class="text-xs text-secondary mb-0"><?php echo $libros->nombreEditorial; ?></p>
-                    </td>
-                    <td class="align-middle">
-                      <a class="btn btn-primary btn-sm" href="<?php echo URLROOT; ?>Libros/editarLibro/<?php echo $libros->idLibro;  ?>"><i class="bi bi-pencil-square">Editar</i></a>
-                    </td>
-                    <td><a class="btn btn-danger btn-sm" href="<?php echo URLROOT; ?>Libros/eliminarLibro/<?php echo $libros->idLibro;  ?>"><i class="bi bi-trash3">Borrar</i></a>
-                    </td>
-                  </tr>
+                <?php foreach ($data as $index => $fila) :; ?>
+                  <?php foreach ($fila as $index2 => $libros) :; ?>
+                    <tr>
+                      <td class="align-middle text-center text-sm">
+                        <p class="text-xs text-black mb-0"><?php echo $libros->idLibro; ?></p>
+                      </td>
+                      <td>
+                        <p class="text-xs text-black mb-0"><?php echo $libros->nombreLibro; ?></p>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <p class="text-xs text-secondary mb-0"><?php echo $libros->autor; ?></p>
+                      </td>
+                      <td class="align-middle text-center">
+                        <p class="text-xs text-secondary mb-0"><?php echo $libros->disponible; ?></p>
+                      </td>
+                      <td class="align-middle text-center">
+                        <p class="text-xs text-secondary mb-0"><?php echo $libros->cantidadTotal; ?></p>
+                      </td>
+                      <td class="align-middle text-center">
+                        <p class="text-xs text-secondary mb-0"><?php echo $libros->nombreEditorial; ?></p>
+                      </td>
+                      <td class="align-middle">
+                        <a class="btn btn-primary btn-sm" href="<?php echo URLROOT; ?>Libros/editarLibro/<?php echo $libros->idLibro;  ?>"><i class="bi bi-pencil-square">Editar</i></a>
+                      </td>
+                      <td><a class="btn btn-danger btn-sm" href="<?php echo URLROOT; ?>Libros/eliminarLibro/<?php echo $libros->idLibro;  ?>"><i class="bi bi-trash3">Borrar</i></a>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
                 <?php endforeach; ?>
               </tbody>
             </table>
+            <nav aria-label="Page navigation example justify-align-center">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="<?php echo $data["previous"]; ?>">Previo</a></li>
+                <?php for ($index = 1; $index <= $data['total']; $index++) : ?>
+                  <li class="page-item"><a class="page-link" href=" <?php echo $index; ?>">
+                      <?php echo $index; ?>
+                    </a></li>
+                <?php endfor; ?>
+                <li class="page-item"><a class="page-link" href=" <?php echo URLROOT; ?>Libros/<?php echo $data["next"]; ?>">Siguiente</a></li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>

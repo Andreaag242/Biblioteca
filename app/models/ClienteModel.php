@@ -132,7 +132,7 @@ class ClienteModel
     public function totalPages($perPage, $offset)
     {
         $this->db->query("SELECT idCliente, nombre1, nombre2, apellido1, apellido2, fechaNacimiento, telefono, direccion, activo
-        from cliente where activo!=1 ORDER BY apellido1 ASC LIMIT :limit OFFSET :offset");
+        from cliente where activo!=1 ORDER BY nombre1 ASC LIMIT :limit OFFSET :offset");
         $this->db->bind(":limit", $perPage);
         $this->db->bind(":offset", $offset);
         $resultSet = $this->db->getAll();

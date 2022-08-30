@@ -27,24 +27,37 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($data as $editorial) :; ?>
-                  <tr>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-xs text-black mb-0"><?php echo $editorial->idEditorial; ?></p>
-                    </td>
-                    <td>
-                      <p class="text-xs text-black mb-0"><?php echo $editorial->nombreEditorial; ?></p>
-                    </td>
-                    <td class="align-middle">
-                      <a class="btn btn-primary btn-sm" href="<?php echo URLROOT; ?>Editorial/editarEditorial/<?php echo $editorial->idEditorial;  ?>"><i class="bi bi-pencil-square">Editar</i></a>
-                    </td>
-                    <td>
-                      <a class="btn btn-danger btn-sm" href="<?php echo URLROOT; ?>Editorial/eliminarEditorial/<?php echo $editorial->idEditorial;  ?>"><i class="bi bi-trash3">Borrar</i></a>
-                    </td>
-                  </tr>
+                <?php foreach ($data as $index => $fila) :; ?>
+                  <?php foreach ($fila as $index2 => $editorial) :; ?>
+                    <tr>
+                      <td class="align-middle text-center text-sm">
+                        <p class="text-xs text-black mb-0"><?php echo $editorial->idEditorial; ?></p>
+                      </td>
+                      <td>
+                        <p class="text-xs text-black mb-0"><?php echo $editorial->nombreEditorial; ?></p>
+                      </td>
+                      <td class="align-middle">
+                        <a class="btn btn-primary btn-sm" href="<?php echo URLROOT; ?>Editorial/editarEditorial/<?php echo $editorial->idEditorial;  ?>"><i class="bi bi-pencil-square">Editar</i></a>
+                      </td>
+                      <td>
+                        <a class="btn btn-danger btn-sm" href="<?php echo URLROOT; ?>Editorial/eliminarEditorial/<?php echo $editorial->idEditorial;  ?>"><i class="bi bi-trash3">Borrar</i></a>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
                 <?php endforeach; ?>
               </tbody>
             </table>
+            <nav aria-label="Page navigation example justify-align-center">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="<?php echo $data["previous"]; ?>">Previo</a></li>
+                <?php for ($index = 1; $index <= $data['total']; $index++) : ?>
+                  <li class="page-item"><a class="page-link" href=" <?php echo $index; ?>">
+                      <?php echo $index; ?>
+                    </a></li>
+                <?php endfor; ?>
+                <li class="page-item"><a class="page-link" href=" <?php echo URLROOT; ?>Editorial/<?php echo $data["next"]; ?>">Siguiente</a></li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>

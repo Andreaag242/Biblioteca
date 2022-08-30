@@ -89,4 +89,44 @@ class LibrosModel{
         $resultSet = $this->db->getAll();
         return $resultSet;
     }
+
+    // contar las filas
+    public function rowCount()
+    {
+        $this->db->query("SELECT * FROM libros");
+        $resultSet = $this->db->rowCount();
+        return $resultSet;
+    }
+
+
+    /**
+     * totalMedicos
+     *  Devuelve total medicos para la paginacion
+     * @return void
+     */
+    public function totalLibro()
+    {
+        $this->db->query("SELECT COUNT(idLibro) as numevents FROM libros");
+        $resultSet = $this->db->getOne();
+        return  $resultSet;
+    }
+
+
+    /**
+     * totalPages
+     * devuelve el total de paginas de acuerdo al limite y al offset
+     * @param  mixed $perPage
+     * @param  mixed $offset
+     * @return void
+     */
+    public function totalPages($perPage, $offset)
+    {
+        $this->db->query("SELECT idLibro, nombreLibro, autor, disponible, cantidadTotal, editorial_idEditorial, nombreEditorial
+        from libros INNER JOIN 	editorial ON libros.editorial_idEditorial = editorial.idEditorial where libros.estado=0 ORDER BY nombreLibro ASC LIMIT :limit OFFSET :offset");
+        $this->db->bind(":limit", $perPage);
+        $this->db->bind(":offset", $offset);
+        $resultSet = $this->db->getAll();
+        return $resultSet;
+    }
+    //=========================== paginacion  =====================
 }

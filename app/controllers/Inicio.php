@@ -16,17 +16,31 @@ class Inicio extends Controller
     }
 
     // funcion abrir menu
-    public function abrirMenu(){
+    public function abrirMenu($currentPage = 1)
+    {
         $data = [];
-        $data=$this->usuarioModel->validarUsuario();
-        if($data=="Vacio"){
-            $this->renderView('Inicio', $data);  
-        }else{
+        $data = $this->usuarioModel->validarUsuario();
+        if ($data == "Vacio") {
+            $this->renderView('Inicio', $data);
+        } else {
 
             session_start();
             $_SESSION['usuario'] = $data->usuario;
-            $data = $this->usuarioModel->verUsuarios();
-            $this->renderView('Usuario/UsuarioInicio',$data);
+            $perPage = 15;
+            $totalCount = $this->usuarioModel->totalUsuario();
+            $pagination = new Paginator($currentPage, $perPage, $totalCount);
+            $offset = $pagination->offset();
+            $usuario = $this->usuarioModel->totalPages($perPage, $offset);
+
+            $data = [
+                'usuario' => $usuario,
+                'previous' => $pagination->previous(),
+                'next' => $pagination->next(),
+                'total' => $pagination->totalPages(),
+                'currentPage' => $currentPage
+
+            ];
+            $this->renderView('Usuario/UsuarioInicio', $data);
         }
     }
 }

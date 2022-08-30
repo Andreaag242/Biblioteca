@@ -10,9 +10,23 @@ class Usuario extends Controller
     }
 
     //funcion mostrar el inicio
-    public function index()
+    public function index($currentPage=1)
     {
-        $data = $this->usuarioModel->verUsuarios();
+        $perPage = 15;
+        $totalCount = $this->usuarioModel->totalUsuario();
+        $pagination = new Paginator($currentPage, $perPage, $totalCount);
+        $offset = $pagination->offset();
+        $usuario = $this->usuarioModel->totalPages($perPage, $offset);
+
+        $data = [
+            'usuario' => $usuario,
+            'previous' => $pagination->previous(),
+            'next' => $pagination->next(),
+            'total' => $pagination->totalPages(),
+            'currentPage' => $currentPage
+
+        ];
+        
         $this->renderView('Usuario/UsuarioInicio', $data);
 
     }
@@ -119,5 +133,12 @@ class Usuario extends Controller
         } else {
             $this->index();
         };
+    }
+
+    public function ImprimirListado()
+    {
+        $data = $this->usuarioModel->verUsuarios();
+        //$data = [];
+        $this->renderView('Usuario/rptListadoUsuario', $data);
     }
 }

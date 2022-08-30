@@ -75,4 +75,44 @@ class EditorialModel
             return false;
         }
     }
+
+    // contar las filas
+    public function rowCount()
+    {
+        $this->db->query("SELECT * FROM editorial");
+        $resultSet = $this->db->rowCount();
+        return $resultSet;
+    }
+
+
+    /**
+     * totalMedicos
+     *  Devuelve total medicos para la paginacion
+     * @return void
+     */
+    public function totalEditorial()
+    {
+        $this->db->query("SELECT COUNT(idEditorial) as numevents FROM editorial");
+        $resultSet = $this->db->getOne();
+        return  $resultSet;
+    }
+
+
+    /**
+     * totalPages
+     * devuelve el total de paginas de acuerdo al limite y al offset
+     * @param  mixed $perPage
+     * @param  mixed $offset
+     * @return void
+     */
+    public function totalPages($perPage, $offset)
+    {
+        $this->db->query("SELECT idEditorial, nombreEditorial
+        from editorial WHERE estado!=1 ORDER BY nombreEditorial ASC LIMIT :limit OFFSET :offset");
+        $this->db->bind(":limit", $perPage);
+        $this->db->bind(":offset", $offset);
+        $resultSet = $this->db->getAll();
+        return $resultSet;
+    }
+    //=========================== paginacion  =====================
 }

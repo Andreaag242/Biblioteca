@@ -9,9 +9,22 @@ class Libros extends Controller
     }
 
     //funcion mostrar el inicio
-    public function index()
+    public function index($currentPage=1)
     {
-        $data = $this->librosModel->verLibros();
+        $perPage = 15;
+        $totalCount = $this->librosModel->totalLibro();
+        $pagination = new Paginator($currentPage, $perPage, $totalCount);
+        $offset = $pagination->offset();
+        $libros = $this->librosModel->totalPages($perPage, $offset);
+
+        $data = [
+            'libros' => $libros,
+            'previous' => $pagination->previous(),
+            'next' => $pagination->next(),
+            'total' => $pagination->totalPages(),
+            'currentPage' => $currentPage
+
+        ];
         $this->renderView('Libros/LibrosInicio', $data);
 
     }
