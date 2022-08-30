@@ -1,4 +1,5 @@
-<?php require_once APPROOT . "/views/inc/header.php"; ?>
+<?php require_once APPROOT . "/views/inc/header.php"; 
+var_dump($datos);?>
 
 <!-- End Navbar -->
 <div class="container-fluid py-4">
@@ -7,7 +8,7 @@
   <div class="row">
     <div class="col-8">
       <form role="form" method="POST" action="<?php echo URLROOT; ?>Cliente/buscarCliente" class="d-flex">
-        <input type="text" name="idCliente" class="form-control w-20" placeholder=" Identificacion">
+        <input type="text" name="nombreCliente" class="form-control w-20" placeholder="Nombre">
         <button type="submit" class="btn bg-gradient-dark mt-1 ms-3">Buscar</button>
       </form>
     </div>

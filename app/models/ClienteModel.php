@@ -92,8 +92,8 @@ class ClienteModel
     public function buscCliente($datos)
     {
         $this->db->query("SELECT idCliente, nombre1, nombre2, apellido1, apellido2, fechaNacimiento, telefono, direccion, activo
-        from cliente where activo!=1");
-        $nombre = "%".$datos['nombreLibro']."%";
+        from cliente where activo!=1 and nombre1 like :nombre or nombre2 like :nombre or apellido1 like :nombre or apellido2 like :nombre");
+        $nombre = "%".$datos['nombreCliente']."%";
         $this->db->bind(':nombre', $nombre);
         $resultSet = $this->db->getAll();
         return $resultSet;

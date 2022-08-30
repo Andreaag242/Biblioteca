@@ -124,15 +124,15 @@ class Cliente extends Controller
     public function buscarCliente()
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $datos = [
-                'idCliente' => $_POST['idCliente']
+            $resultado = [
+                'nombreCliente' => $_POST['nombreCliente']
             ];
-            $resultado = $this->clienteModel->buscCliente($datos);
-            if ($resultado) {
+            $resultado = $this->renderView('Cliente/ClienteInicio', $resultado); //= $this->clienteModel->buscCliente($datos);
+            /* if ($resultado) {
                 $this->renderView('Cliente/ClienteInicio', $resultado);
             } else {
-                $this->index();
-            }
+                $this->renderView('Cliente/ClienteInicio', $resultado);
+            } */
         } else {
             $this->index();
         }
