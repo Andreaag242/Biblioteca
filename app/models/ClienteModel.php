@@ -89,12 +89,14 @@ class ClienteModel
         }
     }
     // buscar libros
-    public function buscCliente($datos)
+    public function buscCliente($perPage, $offset, $datos)
     {
         $this->db->query("SELECT idCliente, nombre1, nombre2, apellido1, apellido2, fechaNacimiento, telefono, direccion, activo
-        from cliente where activo!=1 and nombre1 like :nombre or nombre2 like :nombre or apellido1 like :nombre or apellido2 like :nombre");
+        from cliente where activo!=1 and idCliente like :nombre or nombre1 like :nombre or nombre2 like :nombre or apellido1 like :nombre or apellido2 like :nombre ORDER BY nombre1 ASC LIMIT :limit OFFSET :offset");
         $nombre = "%".$datos['nombreCliente']."%";
         $this->db->bind(':nombre', $nombre);
+        $this->db->bind(":limit", $perPage);
+        $this->db->bind(":offset", $offset);
         $resultSet = $this->db->getAll();
         return $resultSet;
 

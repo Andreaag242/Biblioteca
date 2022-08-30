@@ -9,7 +9,7 @@ class Libros extends Controller
     }
 
     //funcion mostrar el inicio
-    public function index($currentPage=1)
+    public function index($currentPage = 1)
     {
         $perPage = 15;
         $totalCount = $this->librosModel->totalLibro();
@@ -26,17 +26,18 @@ class Libros extends Controller
 
         ];
         $this->renderView('Libros/LibrosInicio', $data);
-
     }
 
     //funcion mostrar el formulario agregar o editar libros
-    public function formAdd(){
+    public function formAdd()
+    {
         $data = $this->librosModel->editoriales();
         $this->renderView('Libros/LibrosForm', $data);
     }
 
     // funcion para agregar libros
-    public function agregarLibro(){
+    public function agregarLibro()
+    {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $data = [
                 'nombreLibro' => $_POST['nombreLibro'],
@@ -47,7 +48,7 @@ class Libros extends Controller
             ];
             $resultado = $this->librosModel->addLibro($data);
             if ($resultado) {
-                
+
                 $mensaje = [
                     'mensaje' => 'insercion exitosa',
                     'color' => 'alert alert-success'
@@ -62,7 +63,7 @@ class Libros extends Controller
             }
         } else {
             echo 'Atención! los datos no fueron enviados de un formulario';
-        }   
+        }
     }
 
     // funcion para editar los libros
@@ -95,7 +96,7 @@ class Libros extends Controller
                 'cantidadTotalLibro' => $libros->cantidadTotal,
                 'editorialLibro' => $libros->editorial_idEditorial,
                 'editoriales' => $edit
-                
+
             ];
             $this->renderView('Libros/LibrosEditar', $data);
         }
@@ -131,15 +132,27 @@ class Libros extends Controller
     }
 
     // funcion buscar libros
-    public function buscarLibros()
+    public function buscarLibros($currentPage=1)
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $datos = [
                 'nombreLibro' => $_POST['nombreLibro']
             ];
-            $resultado = $this->librosModel->buscLibro($datos);
-            if ($resultado) {
-                $this->renderView('Libros/LibrosInicio', $resultado);
+            $perPage = 15;
+            $totalCount = $this->librosModel->totalLibro();
+            $pagination = new Paginator($currentPage, $perPage, $totalCount);
+            $offset = $pagination->offset();
+            $libros = $this->librosModel->buscLibro($perPage, $offset, $datos);
+            $data = [
+                'libros' => $libros,
+                'previous' => $pagination->previous(),
+                'next' => $pagination->next(),
+                'total' => $pagination->totalPages(),
+                'currentPage' => $currentPage
+
+            ];
+            if ($libros) {
+                $this->renderView('Libros/LibrosInicio', $data);
             } else {
                 $this->index();
             }
@@ -147,5 +160,4 @@ class Libros extends Controller
             $this->index();
         }
     }
-       
 }

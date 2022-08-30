@@ -76,6 +76,19 @@ class EditorialModel
         }
     }
 
+    // buscar libros
+    public function buscEditorial($perPage, $offset, $datos)
+    {
+        $this->db->query("SELECT idEditorial, nombreEditorial
+        from editorial WHERE estado!=1 AND nombreEditorial LIKE :nombre ORDER BY nombreEditorial ASC LIMIT :limit OFFSET :offset ");
+        $nombre = "%".$datos['nombreEditorial']."%";
+        $this->db->bind(':nombre', $nombre);
+        $this->db->bind(":limit", $perPage);
+        $this->db->bind(":offset", $offset);
+        $resultSet = $this->db->getAll();
+        return $resultSet;
+    }
+
     // contar las filas
     public function rowCount()
     {

@@ -96,6 +96,20 @@ class UsuarioModel{
         return $resultSet;
     }
 
+    // buscar libros
+    public function buscUsuario($perPage, $offset, $datos)
+    {
+        $this->db->query("SELECT idUsuario, nombre1, nombre2, apellido1, apellido2, telefono, direccion, usuario, passwordUsuario, idRol, nombreRol
+        from usuario INNER JOIN rol ON usuario.rol_idRol = rol.idRol where rol_idRol!=3 and idUsuario like :nombre or nombre1 like :nombre or nombre2 like :nombre or apellido1 like :nombre or apellido2 like :nombre ORDER BY nombre1 ASC LIMIT :limit OFFSET :offset");
+        $nombre = "%".$datos['nombreUsuario']."%";
+        $this->db->bind(':nombre', $nombre);
+        $this->db->bind(":limit", $perPage);
+        $this->db->bind(":offset", $offset);
+        $resultSet = $this->db->getAll();
+        return $resultSet;
+
+    }
+
     public function roles(){
         $this->db->query("SELECT * from rol");
         $resultSet = $this->db->getAll();

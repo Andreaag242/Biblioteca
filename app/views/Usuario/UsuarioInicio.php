@@ -5,7 +5,12 @@
   <div class="row">
   </div>
   <div class="row">
-
+    <div class="col-8">
+      <form role="form" method="POST" action="<?php echo URLROOT; ?>Usuario/buscarUsuario" class="d-flex">
+        <input type="text" name="nombreUsuario" class="form-control w-20" placeholder="Buscar Usuario">
+        <button type="submit" class="btn bg-gradient-dark mt-1 ms-3">Buscar</button>
+      </form>
+    </div>
     <div class="col-4">
       <a class="btn btn-success btn-sm" href="<?php echo URLROOT; ?>Usuario/formAdd"><i class="bi bi-trash3">Agregar</i></a>
       <a class="btn btn-success btn-sm" href="<?php echo URLROOT; ?>Usuario/ImprimirListado"><i class="bi bi-printer"></i></a></small>

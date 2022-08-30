@@ -80,12 +80,14 @@ class LibrosModel{
     }
 
     // buscar libros
-    public function buscLibro($datos)
+    public function buscLibro($perPage, $offset, $datos)
     {
         $this->db->query("SELECT idLibro, nombreLibro, autor, disponible, cantidadTotal, editorial_idEditorial, nombreEditorial
-        from libros INNER JOIN 	editorial ON libros.editorial_idEditorial = editorial.idEditorial where libros.estado=0 AND nombreLibro LIKE :nombre ");
+        from libros INNER JOIN 	editorial ON libros.editorial_idEditorial = editorial.idEditorial where libros.estado=0 AND nombreLibro LIKE :nombre or autor like :nombre ORDER BY nombreLibro ASC LIMIT :limit OFFSET :offset ");
         $nombre = "%".$datos['nombreLibro']."%";
         $this->db->bind(':nombre', $nombre);
+        $this->db->bind(":limit", $perPage);
+        $this->db->bind(":offset", $offset);
         $resultSet = $this->db->getAll();
         return $resultSet;
     }

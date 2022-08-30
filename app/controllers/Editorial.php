@@ -98,6 +98,35 @@ class Editorial extends Controller
         };
     }
 
+    public function buscarEditorial($currentPage = 1)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $datos = [
+                'nombreEditorial' => $_POST['nombreEditorial']
+            ];
+            $perPage = 15;
+            $totalCount = $this->editorialModel->totalEditorial();
+            $pagination = new Paginator($currentPage, $perPage, $totalCount);
+            $offset = $pagination->offset();
+            $editorial = $this->editorialModel->buscEditorial($perPage, $offset, $datos);
+            $data = [
+                'editorial' => $editorial,
+                'previous' => $pagination->previous(),
+                'next' => $pagination->next(),
+                'total' => $pagination->totalPages(),
+                'currentPage' => $currentPage
+
+            ];
+            if ($editorial) {
+                $this->renderView('Editorial/EditorialInicio', $data);
+            } else {
+                $this->index();
+            }
+        } else {
+            $this->index();
+        }
+    }
+
     // Imprimir reportes de Editoriales
     public function ImprimirListado()
     {

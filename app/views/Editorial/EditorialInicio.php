@@ -5,7 +5,12 @@
   <div class="row">
   </div>
   <div class="row">
-
+    <div class="col-8">
+      <form role="form" method="POST" action="<?php echo URLROOT; ?>Editorial/buscarEditorial" class="d-flex">
+        <input type="text" name="nombreEditorial" class="form-control w-20" placeholder="Buscar Editorial">
+        <button type="submit" class="btn bg-gradient-dark mt-1 ms-3">Buscar</button>
+      </form>
+    </div>
     <div class="col-4">
       <a class="btn btn-success btn-sm" href="<?php echo URLROOT; ?>Editorial/formAdd"><i class="bi bi-trash3">Agregar</i></a>
       <a class="btn btn-success btn-sm" href="<?php echo URLROOT; ?>Editorial/ImprimirListado"><i class="bi bi-printer"></i></a></small>

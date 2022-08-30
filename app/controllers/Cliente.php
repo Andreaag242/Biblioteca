@@ -27,17 +27,18 @@ class Cliente extends Controller
         ];
 
         $this->renderView('Cliente/ClienteInicio', $data);
-
     }
 
     //funcion mostrar el formulario agregar o editar Clientes
-    public function formAdd(){
+    public function formAdd()
+    {
         $data = [];
         $this->renderView('Cliente/ClienteForm', $data);
     }
 
     // funcion para agregar Clientes
-    public function agregarCliente(){
+    public function agregarCliente()
+    {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $data = [
                 'idCliente' => $_POST['idCliente'],
@@ -65,7 +66,7 @@ class Cliente extends Controller
             }
         } else {
             echo 'Atención! los datos no fueron enviados de un formulario';
-        }   
+        }
     }
 
     // funcion para editar las Clientes
@@ -103,10 +104,8 @@ class Cliente extends Controller
             ];
             $this->renderView('Cliente/ClienteEditar', $data);
         }
-
-        
     }
-       
+
     // funcion para eliminar Clientes de forma lógica
     public function eliminarCliente($id)
     {
@@ -121,18 +120,31 @@ class Cliente extends Controller
     }
 
     //funcion buscar Cliente
-    public function buscarCliente()
+    public function buscarCliente($currentPage = 1)
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $resultado = [
+            $datos = [
                 'nombreCliente' => $_POST['nombreCliente']
             ];
-            $resultado = $this->renderView('Cliente/ClienteInicio', $resultado); //= $this->clienteModel->buscCliente($datos);
-            /* if ($resultado) {
-                $this->renderView('Cliente/ClienteInicio', $resultado);
+            $perPage = 15;
+            $totalCount = $this->clienteModel->totalClientes();
+            $pagination = new Paginator($currentPage, $perPage, $totalCount);
+            $offset = $pagination->offset();
+            $clientes = $this->clienteModel->buscCliente($perPage, $offset, $datos);
+
+            $data = [
+                'cliente' => $clientes,
+                'previous' => $pagination->previous(),
+                'next' => $pagination->next(),
+                'total' => $pagination->totalPages(),
+                'currentPage' => $currentPage
+
+            ];
+            if ($clientes) {
+                $this->renderView('Cliente/ClienteInicio', $data);
             } else {
-                $this->renderView('Cliente/ClienteInicio', $resultado);
-            } */
+                $this->index();
+            }
         } else {
             $this->index();
         }

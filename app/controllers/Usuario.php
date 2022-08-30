@@ -135,6 +135,35 @@ class Usuario extends Controller
         };
     }
 
+    public function buscarUsuario($currentPage = 1)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $datos = [
+                'nombreUsuario' => $_POST['nombreUsuario']
+            ];
+            $perPage = 15;
+            $totalCount = $this->usuarioModel->totalUsuario();
+            $pagination = new Paginator($currentPage, $perPage, $totalCount);
+            $offset = $pagination->offset();
+            $usuarios = $this->usuarioModel->buscUsuario($perPage, $offset, $datos);
+            $data = [
+                'usuario' => $usuarios,
+                'previous' => $pagination->previous(),
+                'next' => $pagination->next(),
+                'total' => $pagination->totalPages(),
+                'currentPage' => $currentPage
+
+            ];
+            if ($usuarios) {
+                $this->renderView('Usuario/UsuarioInicio', $data);
+            } else {
+                $this->index();
+            }
+        } else {
+            $this->index();
+        }
+    }
+
     public function ImprimirListado()
     {
         $data = $this->usuarioModel->verUsuarios();
