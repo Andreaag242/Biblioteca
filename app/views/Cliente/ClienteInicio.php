@@ -62,13 +62,13 @@
             </table>
             <nav aria-label="Page navigation example justify-align-center">
               <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="<?php echo $data["previous"]; ?>">Previo</a></li>
+                <li class="page-item"><a class="page-link" href="<?php echo $data["previous"]; ?>"><i class="bi bi-arrow-left-circle" style="font-size: 2em;"></i></a></li>
                 <?php for ($index = 1; $index <= $data['total']; $index++) : ?>
                   <li class="page-item"><a class="page-link" href=" <?php echo $index; ?>">
                       <?php echo $index; ?>
                     </a></li>
                 <?php endfor; ?>
-                <li class="page-item"><a class="page-link" href=" <?php echo URLROOT; ?>Cliente/<?php echo $data["next"]; ?>">Siguiente</a></li>
+                <li class="page-item"><a class="page-link" href=" <?php echo URLROOT; ?>Cliente/<?php echo $data["next"]; ?>"><i class="bi bi-arrow-right-circle" style="font-size: 2em;"></i></a></li>
               </ul>
             </nav>
           </div>
