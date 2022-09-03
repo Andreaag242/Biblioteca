@@ -6,10 +6,10 @@ class UsuarioModel{
     public function __construct(){
         $this->db = new Dbase;
     }
-    public function validarUsuario()
+    public function validarUsuario($date)
     {
-        $usuario = $_POST['usuario'];
-        $pass = $_POST['pass'];
+        $usuario = $date['user'];
+        $pass = $date['pass'];
         
         $this->db->query("SELECT * FROM usuario where usuario='$usuario' AND passwordUsuario='$pass'");
         //$resultSet = $this->db->getAll(PDO::FETCH_OBJ);
