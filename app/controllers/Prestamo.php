@@ -20,38 +20,12 @@ class Prestamo extends Controller
     //funcion mostrar el formulario agregar o editar prestamo
     public function formAdd()
     {
-
-        $libros = $this->librosModel->verLibros();
         $cliente = $this->clienteModel->verClientes();
-
         $data = [
-            "libros" => $libros,
             "clientes" =>$cliente
         ];
         $this->renderView('Prestamo/PrestamoForm', $data);
     }
-
-    /* public function formAddLibro()
-    {   $data = [];
-        $this->renderView('Prestamo/PrestamoLibro', $data);
-    }
-
-    public function formVerifLibro(){
-        $libros = [];
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $select = $_POST["libros"];
-            $libros = $this->librosModel->verLibros();
-            $edit = $this->librosModel->editoriales();
-            $data = [
-                'Libros' => $libros,
-                'editoriales' => $edit,
-                'seleccion' => $select
-            ];
-            $this->renderView('Prestamo/PrestamoLibro', $data);
-        }else {
-            $this->index();
-        }
-    } */
 
     //función buscar prestamo
     public function buscarPrestamos()
@@ -63,6 +37,29 @@ class Prestamo extends Controller
             $resultado = $this->prestamoModel->buscPrestamo($datos);
             if ($resultado) {
                 $this->renderView('Prestamo/PrestamoInicio', $resultado);
+            } else {
+                $this->index();
+            }
+        } else {
+            $this->index();
+        }
+    }
+
+    public function buscarCliente($currentPage = 1)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $datos = [
+                'nombreCliente' => $_POST['nombreCliente']
+            ];
+            
+            $cliente = $this->prestamoModel->buscCliente($datos);
+            $clientes = $this->clienteModel->verClientes();
+            $data = [
+                'busc' => $cliente,
+
+            ];
+            if ($cliente) {
+                $this->renderView('Prestamo/PrestamoForm', $data);
             } else {
                 $this->index();
             }

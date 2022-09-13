@@ -22,7 +22,7 @@ class Dbase
     {
         //FIXME: agregar opciones de mysql
         //dsn : almacenamos la ruta
-        $dsn = "mysql:host=".$this->host.";dbname=".$this->bdatos;
+        $dsn = "mysql:host=".$this->host.";dbname=".$this->bdatos.";charset=utf8";
         try{
             $this->dbh = new PDO($dsn,$this->user,$this->password);
         }

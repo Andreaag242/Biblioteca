@@ -51,6 +51,17 @@ class PrestamoModel{
         }
     }
 
+    public function buscCliente( $datos)
+    {
+        $this->db->query("SELECT idCliente, nombre1, nombre2, apellido1, apellido2, fechaNacimiento, telefono, direccion, activo
+        from cliente where activo!=1 and idCliente like :nombre");
+        $nombre = "%".$datos['nombreCliente']."%";
+        $this->db->bind(':nombre', $nombre);
+        $resultSet = $this->db->getAll();
+        return $resultSet;
+
+    }
+
     public function buscPrestamo($datos)
     {
         $valor=$this->db->query("SELECT idPrestamo, fechaPrestamo, fechaEntrega, cliente_idCliente, usuario

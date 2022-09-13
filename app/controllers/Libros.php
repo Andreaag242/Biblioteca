@@ -28,6 +28,12 @@ class Libros extends Controller
         $this->renderView('Libros/LibrosInicio', $data);
     }
 
+    public function getAll()
+    {
+        $data = $this->librosModel->verLibros();
+        echo json_encode($data); 
+    }
+
     //funcion mostrar el formulario agregar o editar libros
     public function formAdd()
     {

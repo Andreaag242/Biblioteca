@@ -36,6 +36,14 @@ class Cliente extends Controller
         $this->renderView('Cliente/ClienteForm', $data);
     }
 
+    // traer clientes
+    public function getAll()
+    {
+        $data = $this->clienteModel->verClientes();
+        echo json_encode($data);
+        
+    }
+
     // funcion para agregar Clientes
     public function agregarCliente()
     {

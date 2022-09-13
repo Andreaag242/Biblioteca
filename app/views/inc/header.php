@@ -1,24 +1,9 @@
-<!--
-=========================================================
-* Argon Dashboard 2 - v2.0.4
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
-
 <?php
 error_reporting(0);
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8" />
@@ -28,6 +13,8 @@ session_start();
   <title>
     Biblioteca Almejandría
   </title>
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>DataTables-1.12.1/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>css/bootstrap.min.css">
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
@@ -39,6 +26,7 @@ session_start();
   <link href="<?php echo URLROOT; ?>css/nucleo-svg.css" rel="stylesheet" />
   <link href="<?php echo URLROOT; ?>css/style.css" rel="stylesheet" />
   <!-- CSS Files -->
+  
   <link id="pagestyle" href="<?php echo URLROOT; ?>css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
 
@@ -115,12 +103,12 @@ session_start();
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
-          
+
           <h6 class="font-weight-bolder text-white mb-0">Usuario: <?php echo $_SESSION['usuario']; ?></h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            
+
           </div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
@@ -130,7 +118,7 @@ session_start();
               </a>
             </li>
             <li class="nav-item px-3 d-flex align-items-center">
-              
+
             </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
