@@ -27,8 +27,6 @@ class Inicio extends Controller
                 'user' => trim($_POST['usuario']),
                 'pass' => trim($_POST['pass'])
             ];
-
-            $data = [];
             $data = $this->usuarioModel->validarUsuario($date);
             if ($data == "Vacio") {
                 $this->renderView('Inicio', $data);
@@ -67,6 +65,7 @@ class Inicio extends Controller
     {
         session_start();
         $_SESSION['usuario'] = $datos->usuario;
+        $_SESSION['nombreUsuario'] = $datos->nombre1.' '.$datos->nombre2.' '.$datos->apellido1.' '.$datos->apellido2;
     }
 
     public function cerrarSesion()

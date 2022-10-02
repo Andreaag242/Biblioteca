@@ -1,22 +1,47 @@
 const URLROOT = "http://localhost:8000/biblioteca/";
-/* function llenarMedico() {
-  fetch(URLROOT + "Cliente/getALL")
-    .then((response) => response.json())
-    .then((data) => {
-      let medico = document.getElementById("medico");
-      for (let i = 0; i <= data.length; i++) {
-        medico.options[i] = new Option(
-          //  data[i].nombreMedico + " " + data[i].apellidosMedico 
-          data[i].nombreMedico + "  " + data[i].apellidosMedico
-        );
-      }
-    })
-    //Then con el error generado...
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+
+//modal busqueda de pacientes
+let tblcliente = $("#tblCliente").DataTable({
+  autoWidth: false,
+  ajax: {
+    url: URLROOT+"Prestamo/verClientes",
+    dataSrc: "",
+  },
+  columns: [
+    {
+      data: null,
+      defaultContent:
+        "<button type='button' class='btn btn-primary btn-sm shadow-sm' id='agregarCliente'>+</button>",
+    },
+    { data: "idCliente" },
+    { data: "nombre1" },
+    { data: "nombre2" },
+    { data: "apellido1" },
+    { data: "apellido2" },
+    { data: "fechaNacimiento" },
+  ],
+});
+//selecciona el  item para agregarlo al detalle de la formula
+$("#tblCliente tbody").on("click", "#agregarCliente", function () {
+  var data = tblcliente.row($(this).parents("tr")).data(); //captura la fila
+  agregarDataCliente(
+    data.idCliente,
+    data.nombre1,
+    data.nombre2,
+    data.apellido1,
+    data.apellido2,
+    data.fechaNacimiento,
+  );
+});
+
+function agregarDataCliente(id, nombre1, nombre2, apellido1, apellido2, fecha) {
+  let idCliente = document.getElementById("idCliente");
+  let nombreCliente = document.getElementById("nombreCliente");
+  let fechaNacimiento = document.getElementById("fechaNace");
+  idCliente.value = id;
+  nombreCliente.value = nombre1+" "+nombre2+" "+apellido1+" "+apellido2;
+  fechaNacimiento.value = fecha;
 }
-llenarMedico(); */
 
 $(document).ready(function () {
   var table = $("#tblLibros").DataTable({
