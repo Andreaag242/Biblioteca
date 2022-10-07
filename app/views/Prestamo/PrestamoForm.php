@@ -15,7 +15,7 @@
                 <div class="col-md-10">
                     <div class="col p-3 ps-5">
 
-                        <form role="form" method="POST" action="<?php echo URLROOT; ?>Prestamo/formAdd">
+                        <form role="form" method="POST" id="frmPrestamo" name="frmPrestamo" action="<?php echo URLROOT; ?>Prestamo/formAdd">
                             <div class="row">
                                 <div class="justify-content-center">
                                     <button class="btn btn-primary btn-sm" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#cliente">Buscar</button>
@@ -36,6 +36,10 @@
                                     <label for="" class="form-label">Usuario:</label>
                                     <input type="text" name="usuario" class="form-control w-75" placeholder="Usuario" value="<?php echo $_SESSION['nombreUsuario']; ?>" readonly>
                                 </div>
+                                <div class="col-2">
+                                    <label for="" class="form-label">Fecha Prestamo:</label>
+                                    <input type="date" name="fechaPrestamo" id="fechaPrestamo" class="form-control form-control-sm" required>
+                                </div>
                                 <div class="col-4">
                                     <br><br>
                                     <button type="button" class="btn btn-primary btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#libros">Agregar Libro <i class="bi bi-plus-circle"></i>
@@ -47,9 +51,9 @@
                                     <table class="table table-bordered table-sm" id="detalle">
                                         <thead class=" table-light">
                                             <tr>
+                                                <th>Codigo</th>
                                                 <th>Nombre</th>
-                                                <th>Código</th>
-                                                <th>autor</th>
+                                                <th>Editorial</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -85,8 +89,9 @@
                     <thead class="table-light">
                         <tr>
                             <th> </th>
+                            <th>Codigo</th>
                             <th>Nombre</th>
-                            <th>Código</th>
+                            <th>Editorial</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
@@ -94,8 +99,9 @@
                     <tfoot>
                         <tr>
                             <th> </th>
+                            <th>Codigo</th>
                             <th>Nombre</th>
-                            <th>Código</th>
+                            <th>Editorial</th>
                         </tr>
                     </tfoot>
                 </table>

@@ -9,7 +9,7 @@ class LibrosModel{
     
     public function verLibros()
     {
-        $this->db->query("SELECT idLibro, nombreLibro, autor, disponible, cantidadTotal, editorial_idEditorial, nombreEditorial
+        $this->db->query("SELECT idLibro, nombreLibro, autor, disponible, cantidadTotal, idEditorial, nombreEditorial
         from libros INNER JOIN 	editorial ON libros.editorial_idEditorial = editorial.idEditorial where libros.estado=0");
         $resultSet = $this->db->getAll();
         return $resultSet;

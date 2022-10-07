@@ -14,24 +14,6 @@ class PrestamoModel{
         $resultSet = $this->db->getAll();
         return $resultSet;
     }
-    public function addLibro($data){
-
-        $valor=$this->db->query("INSERT INTO `libros` (nombreLibro, autor, disponible, cantidadTotal, editorial_idEditorial) 
-        VALUES (:nom,:autor,:disp,:cant,:edit)");
-        //bindiamos
-        
-        $valor->bindParam(':nom', $data['nombreLibro'],PDO::PARAM_STR);
-        $valor->bindParam(':autor', $data['autorLibro'],PDO::PARAM_STR);
-        $valor->bindParam(':disp', $data['disponibleLibro'],PDO::PARAM_STR);
-        $valor->bindParam(':cant', $data['cantidadTotalLibro'],PDO::PARAM_STR);
-        $valor->bindParam(':edit', $data['editorialLibro'],PDO::PARAM_STR);
-        //verificamos la ejecucion correcta del query*/
-        if ($this->db->execute()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     public function editLibro($data){
 
@@ -84,5 +66,26 @@ class PrestamoModel{
         } else {
             return false;
         }
+    }
+
+    public function add($data)
+    {
+        $this->db->query("INSERT INTO encabezadoprestamo (fechaPrestamo,cliente_idCliente,usuario) VALUES (:fecha,:idCliente,:usuario) ");
+        //bindiamos
+        $this->db->bind(':fecha', $data['fechaPrestamo']);
+        $this->db->bind(':idCliente', $data['cliente_idCliente']);
+        $this->db->bind(':usuario', $data['usuario']);
+        //verificamos la ejecucion correcta del query 
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getLast()
+    {
+        $ultimo = $this->db->lastInsertId();
+        return $ultimo;
     }
 }

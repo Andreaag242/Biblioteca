@@ -8,6 +8,7 @@ class Prestamo extends Controller
         $this->librosModel =  $this->loadModel('LibrosModel');
         $this->clienteModel =  $this->loadModel('ClienteModel');
         $this->prestamoModel =  $this->loadModel('PrestamoModel');
+        $this->detalleFormulaModel = $this->loadModel('DetallePrestamoModel');
     }
 
     //funcion mostrar el inicio
@@ -50,6 +51,30 @@ class Prestamo extends Controller
             }
         } else {
             $this->index();
+        }
+    }
+
+    public function guardar()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $data = [
+                'idCliente' => $_POST['idCliente'],
+                'usuario' => $_POST['usuario'],
+                'fechaPrestamo' => $_POST["fechaPrestamo"],
+                'idLibro' => $_POST["idLibro"],
+                'nombreLibro' => $_POST["nombreLibro"],
+                'editorialLibro' => $_POST["editorialLibro"]
+            ];
+            $resultado = $this->prestamoModel->add($data);
+            if ($resultado) {
+                $numPrestamo = $this->prestamoModel->getLast();
+                $respuesta = $this->detalleFormulaModel->add($data, $numPrestamo);
+            }
+            if ($respuesta) {
+                echo json_encode('Exito: Formula Creada !.');
+            } else {
+                echo json_encode('Error: No se puede crear la Formula !.');
+            }
         }
     }
 

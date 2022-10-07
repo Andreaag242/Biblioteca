@@ -81,4 +81,10 @@ class Dbase
         $this->execute();
         return $this->stmt->rowCount();
     }
+    
+    public function lastInsertId()
+    {
+        //$this->execute();
+        return $this->dbh->lastInsertId();
+    }
 }
