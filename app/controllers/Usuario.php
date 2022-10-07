@@ -55,11 +55,12 @@ class Usuario extends Controller
             ];
             $resultado = $this->usuarioModel->addUsuario($data);
             if ($resultado) {
-                $mensaje = [
+              /*   $mensaje = [
                     'mensaje' => 'insercion exitosa',
                     'color' => 'alert alert-success'
-                ];
-                $this->formAdd($mensaje);
+                ]; */
+              //  $this->formAdd($mensaje);
+              echo json_encode("Insercion Exitosa!");
             } else {
                 $mensaje = [
                     'mensaje' => 'error en la insercion',

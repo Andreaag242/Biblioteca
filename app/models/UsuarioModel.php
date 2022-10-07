@@ -20,7 +20,7 @@ class UsuarioModel{
             return $resultSet;
         }
         else{
-            return "Vacio";
+            return false;
         }
 
         /* if ($pass!= $resultSet->password) {

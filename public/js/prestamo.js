@@ -21,13 +21,13 @@ function init() {
 function guardar(e) {
   e.preventDefault();
   let datos = new FormData(frmPrestamo);
-
   fetch("http://localhost:8000/biblioteca/Prestamo/guardar", {
     method: "POST",
     body: datos,
   })
     .then((response) => response.json())
     .then((data) => {
+      //console.log(data);
       Swal.fire({
         title: data,
         icon: "success",
@@ -43,7 +43,7 @@ function guardar(e) {
 let tblcliente = $("#tblCliente").DataTable({
   autoWidth: false,
   ajax: {
-    url: URLROOT+"Prestamo/verClientes",
+    url: URLROOT + "Prestamo/verClientes",
     dataSrc: "",
   },
   columns: [
@@ -69,7 +69,7 @@ $("#tblCliente tbody").on("click", "#agregarCliente", function () {
     data.nombre2,
     data.apellido1,
     data.apellido2,
-    data.fechaNacimiento,
+    data.fechaNacimiento
   );
 });
 
@@ -78,7 +78,8 @@ function agregarDataCliente(id, nombre1, nombre2, apellido1, apellido2, fecha) {
   let nombreCliente = document.getElementById("nombreCliente");
   let fechaNacimiento = document.getElementById("fechaNace");
   idCliente.value = id;
-  nombreCliente.value = nombre1+" "+nombre2+" "+apellido1+" "+apellido2;
+  nombreCliente.value =
+    nombre1 + " " + nombre2 + " " + apellido1 + " " + apellido2;
   fechaNacimiento.value = fecha;
 }
 
@@ -92,7 +93,8 @@ $(document).ready(function () {
     columns: [
       {
         data: null,
-        defaultContent: "<button type='button' class='btn btn-primary btn-sm shadow-sm' id='agregar'>Agregar +</button>",
+        defaultContent:
+          "<button type='button' class='btn btn-primary btn-sm shadow-sm' id='agregar'>Agregar +</button>",
       },
       { data: "idLibro" },
       { data: "nombreLibro" },
@@ -111,10 +113,10 @@ function agregarDetalle(idLibro, nombreLibro, idEditorial) {
   detalle = document.getElementById("detalle");
   fila = `
   <tr> 
-  <td><input type="text" name="idLibro[]" value ="${idLibro}" class="form-control form-control-sm" readonly></td>
-  <td><input type="text" name="nombreLibro[]" value ="${nombreLibro}" class="form-control form-control-sm" readonly></td>
-  <td><input type="text" name="editorialLibro[]" value ="${idEditorial}" class="form-control form-control-sm" readonly></td>
-  <td><input type="text" name="cantidad[]" class="form-control form-control-sm"></td>
+    <td><input type="text" name="idLibro[]" id="idLibro[]" value ="${idLibro}" class="form-control form-control-sm" readonly></td>
+    <td><input type="text" name="nombreLibro[]" id="nombreLibro[]" value ="${nombreLibro}" class="form-control form-control-sm" readonly></td>
+    <td><input type="text" name="editorialLibro[]" id="editorialLibro[]" value ="${idEditorial}" class="form-control form-control-sm" readonly></td>
+    <td><input type="text" name="cantidad[]" id="cantidad[]" class="form-control form-control-sm"></td>
   </tr>
   `;
   detalle.innerHTML += fila;

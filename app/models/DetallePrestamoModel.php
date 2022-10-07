@@ -22,6 +22,7 @@ class detallePrestamoModel
 
     public function add($data, $numFormula)
     {
+        //die(var_dump($data))
         $numeroFilas = 0;
         while ($numeroFilas < count($data['idLibro'])) {
             $this->db->query("INSERT INTO detalleprestamo(cantidad, libros_idLibro, libros_editorial_idEditorial, encabezadoPrestamo_idPrestamo) VALUES (:cantidad,:idLibro,:editorialLibro,:encabezadoPrestamo)");

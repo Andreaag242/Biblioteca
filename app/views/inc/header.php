@@ -1,6 +1,5 @@
 <?php
 error_reporting(0);
-session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -29,6 +28,9 @@ session_start();
   
   <link id="pagestyle" href="<?php echo URLROOT; ?>css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
+<?php
+session_start();
+?>
 
 <body class="g-sidenav-show   bg-gray-100">
   <div class="min-height-300 bg-primary position-absolute w-100"></div>

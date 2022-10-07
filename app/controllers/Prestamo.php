@@ -8,7 +8,7 @@ class Prestamo extends Controller
         $this->librosModel =  $this->loadModel('LibrosModel');
         $this->clienteModel =  $this->loadModel('ClienteModel');
         $this->prestamoModel =  $this->loadModel('PrestamoModel');
-        $this->detalleFormulaModel = $this->loadModel('DetallePrestamoModel');
+        $this->detallePrestamoModel = $this->loadModel('DetallePrestamoModel');
     }
 
     //funcion mostrar el inicio
@@ -23,7 +23,7 @@ class Prestamo extends Controller
     {
         $cliente = $this->clienteModel->verClientes();
         $data = [
-            "clientes" =>$cliente
+            "clientes" => $cliente
         ];
         $this->renderView('Prestamo/PrestamoForm', $data);
     }
@@ -63,12 +63,15 @@ class Prestamo extends Controller
                 'fechaPrestamo' => $_POST["fechaPrestamo"],
                 'idLibro' => $_POST["idLibro"],
                 'nombreLibro' => $_POST["nombreLibro"],
-                'editorialLibro' => $_POST["editorialLibro"]
+                'editorialLibro' => $_POST["editorialLibro"],
+                'cantidad' => $_POST["cantidad"]
             ];
+            // die(var_dump($data));
             $resultado = $this->prestamoModel->add($data);
+
             if ($resultado) {
                 $numPrestamo = $this->prestamoModel->getLast();
-                $respuesta = $this->detalleFormulaModel->add($data, $numPrestamo);
+                $respuesta = $this->detallePrestamoModel->add($data, $numPrestamo);
             }
             if ($respuesta) {
                 echo json_encode('Exito: Formula Creada !.');
@@ -77,5 +80,4 @@ class Prestamo extends Controller
             }
         }
     }
-
 }

@@ -73,7 +73,7 @@ class PrestamoModel{
         $this->db->query("INSERT INTO encabezadoprestamo (fechaPrestamo,cliente_idCliente,usuario) VALUES (:fecha,:idCliente,:usuario) ");
         //bindiamos
         $this->db->bind(':fecha', $data['fechaPrestamo']);
-        $this->db->bind(':idCliente', $data['cliente_idCliente']);
+        $this->db->bind(':idCliente', $data['idCliente']);
         $this->db->bind(':usuario', $data['usuario']);
         //verificamos la ejecucion correcta del query 
         if ($this->db->execute()) {

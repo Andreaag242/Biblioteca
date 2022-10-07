@@ -63,7 +63,7 @@
                             </div>
 
                     </div>
-                    
+
                 </div>
                 <div class="d-flex justify-content-center">
                     <button type="reset" class="btn btn-secondary btn-sm ms-1">Cancelar</button>
@@ -108,7 +108,6 @@
             </div>
             <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>
@@ -164,6 +163,7 @@
 <script src="<?php echo URLROOT; ?>js/bootstrap.bundle.min.js"></script>
 <script src="<?php echo URLROOT; ?>jQuery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="<?php echo URLROOT; ?>DataTables-1.12.1/js/jquery.dataTables.min.js"></script>
-
+<script src="<?php echo URLROOT; ?>js/sweetalert2.all.min.js"></script>
+<script src="<?php echo URLROOT; ?>css/sweetalert2.min.css"></script>
 <script src="<?php echo URLROOT; ?>js/prestamo.js"></script>
 <?php require_once APPROOT . "/views/inc/footer.php"; ?>

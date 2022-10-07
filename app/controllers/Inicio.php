@@ -27,12 +27,12 @@ class Inicio extends Controller
                 'user' => trim($_POST['usuario']),
                 'pass' => trim($_POST['pass'])
             ];
-            $data = $this->usuarioModel->validarUsuario($date);
-            if ($data == "Vacio") {
-                $this->renderView('Inicio', $data);
+            $user = $this->usuarioModel->validarUsuario($date);
+            $this->crearSesionUsuario($user);
+            if ($user==false){
+                $this->renderView('Inicio', $user);
             } else {
 
-                $this->crearSesionUsuario($data);
                 $perPage = 15;
                 $totalCount = $this->usuarioModel->totalUsuario();
                 $pagination = new Paginator($currentPage, $perPage, $totalCount);
@@ -49,6 +49,22 @@ class Inicio extends Controller
                 ];
                 $this->renderView('Usuario/UsuarioInicio', $data);
             }
+        }if(isset($_SESSION['usuario'])){
+            $perPage = 15;
+                $totalCount = $this->usuarioModel->totalUsuario();
+                $pagination = new Paginator($currentPage, $perPage, $totalCount);
+                $offset = $pagination->offset();
+                $usuario = $this->usuarioModel->totalPages($perPage, $offset);
+
+                $data = [
+                    'usuario' => $usuario,
+                    'previous' => $pagination->previous(),
+                    'next' => $pagination->next(),
+                    'total' => $pagination->totalPages(),
+                    'currentPage' => $currentPage
+
+                ];
+                $this->renderView('Usuario/UsuarioInicio', $data);
         }
         else {
             
@@ -70,10 +86,9 @@ class Inicio extends Controller
 
     public function cerrarSesion()
     {
-        session_start();
+        error_reporting(0);
         unset($_SESSION['usuario']);
         session_destroy();
-        $data = [];
-        $this->renderView('Inicio', $data);
+        $this->renderView('Inicio');
     }
 }
