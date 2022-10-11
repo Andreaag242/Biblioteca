@@ -1,6 +1,7 @@
 <?php require_once APPROOT . "/views/inc/header.php"; ?>
 
-<form role="form" method="POST" action="<?php echo URLROOT; ?>Usuario/eliminarUsuario/<?php echo $data->idUsuario; ?>">
+
+<form role="form" method="POST" id="frmUsuario" name="frmUsuario" action="<?php echo URLROOT; ?>Usuario/eliminarUsuario/<?php echo $data->idUsuario; ?>">
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -30,4 +31,7 @@
     </form>
 </div>
 
+<script src="<?php echo URLROOT; ?>js/sweetalert2.all.min.js"></script>
+<script src="<?php echo URLROOT; ?>css/sweetalert2.min.css"></script>
+<script src="<?php echo URLROOT; ?>js/usuarioEliminar.js"></script>
 <?php require_once APPROOT . "/views/inc/footer.php"; ?>

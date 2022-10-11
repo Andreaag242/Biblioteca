@@ -55,18 +55,9 @@ class Usuario extends Controller
             ];
             $resultado = $this->usuarioModel->addUsuario($data);
             if ($resultado) {
-              /*   $mensaje = [
-                    'mensaje' => 'insercion exitosa',
-                    'color' => 'alert alert-success'
-                ]; */
-              //  $this->formAdd($mensaje);
-              echo json_encode("Insercion Exitosa!");
+                echo json_encode('Exito: Usuario Creado !.');
             } else {
-                $mensaje = [
-                    'mensaje' => 'error en la insercion',
-                    'color' => 'alert alert-primary'
-                ];
-                $this->formAdd($mensaje);
+                echo json_encode('Error: No se puede crear el Usuario !.');
             }
         } else {
             echo 'Atención! los datos no fueron enviados de un formulario';
@@ -76,28 +67,6 @@ class Usuario extends Controller
     // funcion para editar las editoriales
     public function editarUsuario($id)
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $data = [
-                'idUsuario' => $id,
-                'nombre1Usuario' => $_POST['nombre1Usuario'],
-                'nombre2Usuario' => $_POST['nombre2Usuario'],
-                'apellido1Usuario' => $_POST['apellido1Usuario'],
-                'apellido2Usuario' => $_POST['apellido2Usuario'],
-                'fechaNaceUsuario' => $_POST['fechaNaceUsuario'],
-                'telefonoUsuario' => $_POST['telefonoUsuario'],
-                'direccionUsuario' => $_POST['direccionUsuario'],
-                'usuario' => $_POST['usuario'],
-                'passUsuario' => $_POST['passUsuario'],
-                'rolUsuario' => $_POST['rolUsuario']
-            ];
-
-            if ($this->usuarioModel->editUsuario($data)) {
-                $data = [];
-                $this->index();
-            } else {
-                die('ocurrió un error en la inserción !');
-            };
-        } else {
             $usuario = $this->usuarioModel->getOne($id);
             $roles = $this->usuarioModel->roles();
             $data = [
@@ -114,13 +83,37 @@ class Usuario extends Controller
                 'rolUsuario' => $usuario->rol_idRol,
                 'roles' => $roles
             ];
-            /* $rol=[
-                'idRol' => $roles->idRol,
-                'nombreRol'=>$roles->nombreRol
-            ]; */
             
             $this->renderView('Usuario/UsuarioEditar', $data);
-        }
+        
+    }
+
+    public function actualizarUsuario(){
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $data = [
+                'idUsuario' => $_POST['idUsuario'],
+                'nombre1Usuario' => $_POST['nombre1Usuario'],
+                'nombre2Usuario' => $_POST['nombre2Usuario'],
+                'apellido1Usuario' => $_POST['apellido1Usuario'],
+                'apellido2Usuario' => $_POST['apellido2Usuario'],
+                'fechaNaceUsuario' => $_POST['fechaNaceUsuario'],
+                'telefonoUsuario' => $_POST['telefonoUsuario'],
+                'direccionUsuario' => $_POST['direccionUsuario'],
+                'usuario' => $_POST['usuario'],
+                'passUsuario' => $_POST['passUsuario'],
+                'rolUsuario' => $_POST['rolUsuario']
+            ];
+            $resultado=$this->usuarioModel->editUsuario($data);
+            if ($resultado) {
+                echo json_encode('Exito: Usuario Editado !.');
+            } else {
+                echo json_encode('Error: No se puede Editar el Usuario !.');
+            }
+            $this->renderView('Usuario/UsuarioEditar', $data);
+        } else {
+            echo 'Atención! los datos no fueron enviados de un formulario';
+        }  
+        
     }
        
 
@@ -129,11 +122,12 @@ class Usuario extends Controller
         $data = [
             'idUsuario' => $id
         ];
-        if ($this->usuarioModel->elimUsuario($data)) {
-            $this->index();
-        } else {
-            $this->index();
-        };
+        $resultado =$this->usuarioModel->elimUsuario($data);
+            if ($resultado) {
+                echo json_encode('Exito: Usuario Eliminado !.');
+            } else {
+                echo json_encode('Error: No se puede Eliminar el Usuario !.');
+            }
     }
 
     public function buscarUsuario($currentPage = 1)
@@ -171,4 +165,5 @@ class Usuario extends Controller
         //$data = [];
         $this->renderView('Usuario/rptListadoUsuario', $data);
     }
+
 }

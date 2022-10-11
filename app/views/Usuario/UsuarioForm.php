@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="col p-3 ps-5">
-                            <form role="form" method="POST" action="<?php echo URLROOT; ?>Usuario/agregarUsuario">
+                            <form role="form" method="POST" id="frmUsuario" name="frmUsuario" action="<?php echo URLROOT; ?>Usuario/agregarUsuario">
                                 <input type="text" name="idUsuario" class="form-control w-50" placeholder="Identificación">
                                 <br>
                                 <input type="text" name="nombre1Usuario" class="form-control w-75" placeholder="Primer Nombre">
@@ -61,4 +61,7 @@
     </div>
 </div>
 
+<script src="<?php echo URLROOT; ?>js/sweetalert2.all.min.js"></script>
+<script src="<?php echo URLROOT; ?>css/sweetalert2.min.css"></script>
+<script src="<?php echo URLROOT; ?>js/usuario.js"></script>
 <?php require_once APPROOT . "/views/inc/footer.php"; ?>

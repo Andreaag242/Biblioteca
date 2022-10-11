@@ -36,7 +36,7 @@
                     <p class="mb-0">Ingresa tu usuario y contraseña para ingresar</p>
                     </div>
                     <div class="card-body">
-                    <form method="POST" action="<?php echo URLROOT; ?>Inicio/abrirMenu">
+                    <form method="POST" action="<?php echo URLROOT; ?>Inicio/login">
                         <div class="mb-3">
                         <input type="text" name="usuario" class="form-control form-control-lg" placeholder="usuario" aria-label="usuario">
                         </div>

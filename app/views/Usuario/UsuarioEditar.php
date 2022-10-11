@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="col p-3 ps-5">
-                            <form role="form" method="POST" action="<?php echo URLROOT; ?>Usuario/editarUsuario/<?php echo $data['idUsuario']; ?>">
+                            <form role="form" method="POST" id="frmUsuarioEditar" name="frmUsuarioEditar" action="<?php echo URLROOT; ?>Usuario/actualizarUsuario ?>">
                                 
                                 <input type="text" name="idUsuario" class="form-control w-50" placeholder="Identificación" value="<?php echo $data['idUsuario']; ?>" readonly>
                                 <br>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-12 d-flex justify-content-center ">
                         <div class="text-center">
-                        <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Enviar</button>
+                        <button id="editarUsuario" value="actualizar" type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Enviar</button>
                     </div>
                     </div>
                     </form>
@@ -56,4 +56,7 @@
     </div>
 </div>
 
+<script src="<?php echo URLROOT; ?>js/sweetalert2.all.min.js"></script>
+<script src="<?php echo URLROOT; ?>css/sweetalert2.min.css"></script>
+<script src="<?php echo URLROOT; ?>js/usuarioEditar.js"></script>
 <?php require_once APPROOT . "/views/inc/footer.php"; ?>
