@@ -37,7 +37,7 @@
                             <br>
                             <select class="form-select" name="rolUsuario" value="<?php echo $data['idrolUsuario']; ?>">
                                 <?php foreach ($data['roles'] as $rol) :; ?>
-                                    <option value="<?php echo $rol->idRol;?>"> <?php echo $rol->idRol.'-'.$rol->nombreRol ;?></option>
+                                    <option value="<?php echo $rol->idRol;?>"> <?php echo $rol->nombreRol ;?></option>
                                     <?php endforeach; ?>  
                             </select>
                         </div>

@@ -104,12 +104,13 @@ class Usuario extends Controller
                 'rolUsuario' => $_POST['rolUsuario']
             ];
             $resultado=$this->usuarioModel->editUsuario($data);
+            print($resultado);
             if ($resultado) {
-                echo json_encode('Exito: Usuario Editado !.');
+                echo json_encode('Exito: Usuario Editado!.');
             } else {
-                echo json_encode('Error: No se puede Editar el Usuario !.');
+                echo json_encode('Error: No se puede Editar el Usuario!.');
             }
-            $this->renderView('Usuario/UsuarioEditar', $data);
+            
         } else {
             echo 'Atención! los datos no fueron enviados de un formulario';
         }  

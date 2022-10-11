@@ -11,13 +11,12 @@ btnEditarUsuario.addEventListener("click", function (e) {
 
   console.log(...formulario);
 
-  fetch(URLROOT + "Usuario/editarUsuario", {
+  fetch(URLROOT + "Usuario/actualizarUsuario", {
     method: "post",
     body: formulario,
   })
     .then((Response) => Response.json())
     .then((data) => {
-      console.log(data);
       Swal.fire({
         title: data,
         icon: "success",
